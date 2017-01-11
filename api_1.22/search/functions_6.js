@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['find_5fcallgraph_5frecursions',['find_callgraph_recursions',['../a00120.html#ga8bafbdfc32e884141dc81c980472e6f8',1,'callgraph.h']]],
+  ['find_5fcdep',['find_cdep',['../a00121.html#gaf81f7d919cc7adb22986c8fa19a719ef',1,'cdep.h']]],
+  ['find_5fdouble_5fbits_5fint_5fmode',['find_double_bits_int_mode',['../a00141.html#ga00a2b6fece447788452faed0f3ac930f',1,'irmode.h']]],
+  ['find_5fpointer_5ftype_5fto_5ftype',['find_pointer_type_to_type',['../a00159.html#gaa7b397ed5ddbf347ac03e99377f0c8e1',1,'typerep.h']]],
+  ['find_5fsigned_5fmode',['find_signed_mode',['../a00141.html#gaa13aceb5e6e9282985df6ae1c9db63cb',1,'irmode.h']]],
+  ['find_5funsigned_5fmode',['find_unsigned_mode',['../a00141.html#ga3def742ca372b4afc6060bc007a5f1e8',1,'irmode.h']]],
+  ['firm_5fgaussjordansolve',['firm_gaussjordansolve',['../a00112.html#gada5e5b5b834cbf81feaecdf9fb53fbf9',1,'gaussjordan.h']]],
+  ['frame_5falloc_5farea',['frame_alloc_area',['../a00164.html#ga57dcf25d482596becf35cd16dd85100f',1,'typerep.h']]],
+  ['free_5fcallee_5finfo',['free_callee_info',['../a00120.html#ga25053e861599c6cb014d058eeac11cf5',1,'cgana.h']]],
+  ['free_5fcallgraph',['free_callgraph',['../a00120.html#ga4aa63c6933342176f626e96cb3d78bd3',1,'callgraph.h']]],
+  ['free_5fcdep',['free_cdep',['../a00121.html#ga2ae3156eeb33371d3e32690c8d33049e',1,'cdep.h']]],
+  ['free_5fend',['free_End',['../a00187.html#ga18585b2249cbdc2658914910ebae84d2',1,'irnode.h']]],
+  ['free_5fentity',['free_entity',['../a00007.html#ga1db5f77a152b1b7d67fa6034be46298e',1,'typerep.h']]],
+  ['free_5finh_5ftransitive_5fclosure',['free_inh_transitive_closure',['../a00153.html#ga6a20f7c15b678d852961d0cb4f051f6c',1,'typerep.h']]],
+  ['free_5fir_5fgraph',['free_ir_graph',['../a00137.html#gaf398dbcf583cbc70d73ab6b6d0ccb084',1,'irgraph.h']]],
+  ['free_5fir_5fop',['free_ir_op',['../a00143.html#ga318121fcf552c8c672b8370f106b0a58',1,'irop.h']]],
+  ['free_5fir_5fprog',['free_ir_prog',['../a00148.html#ga677d0fecca601914b4b3561ff4aa448e',1,'irprog.h']]],
+  ['free_5firg_5fouts',['free_irg_outs',['../a00146.html#ga653bbcf0028c1484441dcd632ebcbc81',1,'irouts.h']]],
+  ['free_5firp_5fcallee_5finfo',['free_irp_callee_info',['../a00120.html#ga9cbef9a6e45816d5006a464abfdc8c1a',1,'cgana.h']]],
+  ['free_5floop_5finformation',['free_loop_information',['../a00011.html#gae347e30958dac5b45c5e8c4119af63ad',1,'irloop.h']]],
+  ['free_5ftype',['free_type',['../a00153.html#gae5eb65b6cd58eb2fc75c8ef059662bbf',1,'typerep.h']]],
+  ['free_5fvrp_5fdata',['free_vrp_data',['../a00017.html#ga3e612453e4485d3fccf69e89384c0383',1,'vrp.h']]]
+];
