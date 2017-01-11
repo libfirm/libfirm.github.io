@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Unreachable Code</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                        <div class="layout-toc">
+                                                <h2>Contents</h2>
+<ul>
+  <li><a href="#_what_is_unreachable_code">What is unreachable code</a></li>
+  <li><a href="#_detection">Detection</a>
+    <ul>
+      <li><a href="#_conservatively">Conservatively</a></li>
+      <li><a href="#_marking_reachable_blocks">Marking reachable blocks</a></li>
+    </ul>
+  </li>
+  <li><a href="#_pruning">Pruning</a></li>
+  <li><a href="#_caveats">Caveats</a></li>
+</ul>
+
+                                        </div>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Unreachable Code</h1>
+<div class="sect1">
+<h2 id="_what_is_unreachable_code">What is unreachable code</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Unreachable code is code which cannot be reached (by control-flow) from the beginning of the function.
+It will consequently never be executed and can be removed.
+(Note that unreachable code is dead code because removing it will not change program semantics, but you can also have dead code which is reachable.)</p></div>
+<div class="paragraph"><p>By definition the end block is always reachable.
+Optimizations that change control flow are responsible for inserting keep edges accordingly.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_detection">Detection</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We can detect unreachable code in several ways:</p></div>
+<div class="sect2">
+<h3 id="_conservatively">Conservatively</h3>
+<div class="paragraph"><p>A block without any inputs is obviously dead. When removing unreachable code, this usually makes other blocks lose their inputs and therefore makes them dead, too.
+This property will, however, miss unreachable code that contains loops.
+We can easily express this conservative rule as a local optimization.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_marking_reachable_blocks">Marking reachable blocks</h3>
+<div class="paragraph"><p>This is best done using an optimistic dataflow analysis:
+If a block has at least one reachable predecessor then it is reachable.
+If you iterate this until the fixpoint then you have caught all reachable blocks. All other blocks are unreachable.
+This should catch all cases of unreachable code.
+This style is one of the things the dataflow analysis in the "combo" phase calculates.</p></div>
+<div class="paragraph"><p>The principle of marking all reaching blocks also happens implicitly when we calculate the dominance relation.
+So you can identify unreachable blocks in firm by them having a dominance_depth of -1.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pruning">Pruning</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Removing unreachable code means removing a block and all the nodes in it.
+This, however, means that we have to remove inputs from blocks.
+Removing inputs from blocks is only possible if we remove the same input from all Phi nodes in a block at the exact same time!
+As this additionally requires to know all Phi nodes of a block, we use a two-phase approach:</p></div>
+<div class="paragraph"><p>The function <code>remove_unreachable_code()</code> uses dominance information to find unreachable code and replaces all unreachable blocks by a special node called <em>Bad</em>.
+Nodes within unreachable blocks are also replaced by Bad.
+So in effect all unreachable code is replaced by Bad.
+Afterwards, only Blocks and Phi nodes have Bad as input values.</p></div>
+<div class="paragraph"><p>The function <code>remove_bads()</code> removes Bad inputs by updating the block and all contained Phi nodes at once.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_caveats">Caveats</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>lib<span class="algo"><span class="algo">Firm</span></span> has the invariant that Bad nodes should appear only as operands of blocks or Phi nodes.
+This invariant can be violated during an optimization phase but must hold afterwards.</p></div>
+<div class="paragraph"><p>Dominance is not defined for unreachable code.
+So the SSA-property that a definition dominates its uses does not really apply.
+It is unclear if this actually causes problems.
+So far it is only a special case in the verifier.</p></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

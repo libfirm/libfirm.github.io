@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Edge Types</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                        <div class="layout-toc">
+                                                <h2>Contents</h2>
+<ul>
+  <li><a href="#_forward_edges">Forward Edges</a>
+    <ul>
+      <li><a href="#_data_dependencies_black">Data Dependencies (black)</a></li>
+      <li><a href="#_reversed_control_flow_edges_red">Reversed Control Flow Edges (red)</a>
+        <ul>
+          <li><a href="#_special_case_back_edges">Special Case: Back Edges</a></li>
+        </ul>
+      </li>
+      <li><a href="#_memory_dependencies_blue">Memory Dependencies (blue)</a></li>
+      <li><a href="#_keeps_violet">Keeps (violet)</a></li>
+      <li><a href="#_other_dependencies_green">Other Dependencies (green)</a></li>
+    </ul>
+  </li>
+  <li><a href="#_reverse_edges">Reverse Edges</a>
+    <ul>
+      <li><a href="#_outs">Outs</a></li>
+      <li><a href="#_out_edges">Out Edges</a></li>
+    </ul>
+  </li>
+</ul>
+
+                                        </div>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Edge Types</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>People, who know intermediate representations from text books,
+are often confused because <span class="algo">Firm</span> shows edges in the wrong direction.
+Instead of data flow, <span class="algo">Firm</span> provides data dependencies,
+which is usually more convenient in practice.
+So, "forward" means from the End to the Start node.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_forward_edges">Forward Edges</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_data_dependencies_black">Data Dependencies (black)</h3>
+<div class="paragraph"><p>These are the most common edges.
+An operation is connected with a data dependency to its operands.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_reversed_control_flow_edges_red">Reversed Control Flow Edges (red)</h3>
+<div class="paragraph"><p>Reversed, these edges form (sort of) a control flow graph.
+However, these edges go to the operation (not the block),
+which is used to jump to the source block.</p></div>
+<div class="paragraph"><p>These edges are not control dependencies!</p></div>
+<div class="sect3">
+<h4 id="_special_case_back_edges">Special Case: Back Edges</h4>
+<div class="paragraph"><p>A reversed control flow edge, where the block of the target node dominates (or is) the source block.</p></div>
+<div class="paragraph"><p>Do not confuse back edges with reversed edges!</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memory_dependencies_blue">Memory Dependencies (blue)</h3>
+<div class="paragraph"><p>Memory dependencies represent a special form of data dependency,
+where the value is the memory.
+In contrast to other SSA values, memory cannot be duplicated.
+Intuitively, a store operation consumes the whole memory state
+and produces a new state.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_keeps_violet">Keeps (violet)</h3>
+<div class="paragraph"><p>If code is dead, but <a href="Unreachable_Code">reachable</a>, e.g. infinite loops,
+the keep edges are <span class="algo">Firm</span>&#8217;s hack to "keep" the code,
+because they provide a path from the End node.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_other_dependencies_green">Other Dependencies (green)</h3>
+<div class="paragraph"><p>Additional dependencies with no special semantics.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reverse_edges">Reverse Edges</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sometimes it is necessary to walk a <span class="algo">Firm</span> graph in data <em>flow</em> order.
+So lib<span class="algo"><span class="algo">Firm</span></span> provides the following mechanisms.</p></div>
+<div class="sect2">
+<h3 id="_outs">Outs</h3>
+<div class="paragraph"><p>Outs are the reversed form of the dependencies above.
+However, any change to the graph makes this edges inconsistent,
+but the corresponding flag is not set implicitly.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_out_edges">Out Edges</h3>
+<div class="paragraph"><p>These are like outs, but are updated automatically.
+These automatic updates can be switched on and off (edges_activate, edges_deactivate).
+However, keep in mind that this means that dead code does not disappear implicitly,
+because it is still referenced by out edges.</p></div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

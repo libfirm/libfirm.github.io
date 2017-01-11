@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Features</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Features</h1>
+<div class="sect1">
+<h2 id="_about">About</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Works exclusively on a graph-based SSA representation ("sea of nodes") until emission of assembly code.
+</p>
+</li>
+<li>
+<p>
+Written in portable C99: Known to compile with gcc, clang and icc on Linux, FreeBSD, Cygwin.
+</p>
+</li>
+<li>
+<p>
+Includes doxygen documentation
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_analyses">Analyses</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Dominance
+</p>
+</li>
+<li>
+<p>
+Loop Tree
+</p>
+</li>
+<li>
+<p>
+Execution frequency (estimated, profiling with instrumentation)
+</p>
+</li>
+<li>
+<p>
+Control Dependencies
+</p>
+</li>
+<li>
+<p>
+Inter-procedural Call Graph
+</p>
+</li>
+<li>
+<p>
+Def-Use
+</p>
+</li>
+<li>
+<p>
+Alias Analysis
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optimizations">Optimizations</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Dead Code Elimination (<em>happens implicitly</em>)
+</p>
+</li>
+<li>
+<p>
+Constant Folding (<em>happens on the fly</em>)
+</p>
+</li>
+<li>
+<p>
+Local Common Subexpression Elimination (<em>happens on the fly</em>)
+</p>
+</li>
+<li>
+<p>
+Arithmetic Identities (<em>happens on the fly</em>)
+</p>
+</li>
+<li>
+<p>
+Unreachable Code Elimination
+</p>
+</li>
+<li>
+<p>
+Global Common Subexpression Elimination
+</p>
+</li>
+<li>
+<p>
+Code Placement
+</p>
+</li>
+<li>
+<p>
+Operator Strength Reduction
+</p>
+</li>
+<li>
+<p>
+Scalar Replacement
+</p>
+</li>
+<li>
+<p>
+Load/Store Optimisation
+</p>
+</li>
+<li>
+<p>
+Control Flow Optimisations
+</p>
+</li>
+<li>
+<p>
+If-conversion
+</p>
+</li>
+<li>
+<p>
+Jump Threading
+</p>
+</li>
+<li>
+<p>
+Reassociation
+</p>
+</li>
+<li>
+<p>
+Tail Recursion Elimination
+</p>
+</li>
+<li>
+<p>
+Inlining
+</p>
+</li>
+<li>
+<p>
+Procedure Cloning
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_generation">Code Generation</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Mature code generation for x86 (32-bit) with support for x87 and SSE2 floating point
+</p>
+</li>
+<li>
+<p>
+Mature code generation for SPARC
+</p>
+</li>
+<li>
+<p>
+Code generation for x86-64
+</p>
+</li>
+<li>
+<p>
+Experimental code generation for ARM
+</p>
+</li>
+<li>
+<p>
+Novel SSA based register allocator
+</p>
+</li>
+<li>
+<p>
+Several spilling algorithms
+</p>
+</li>
+<li>
+<p>
+Several copy coalescing algorithms
+</p>
+</li>
+<li>
+<p>
+Algorithms for instruction and basic block scheduling
+</p>
+</li>
+<li>
+<p>
+ABI handling helpers
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_development_support">Development Support</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Extensive checkers
+</p>
+</li>
+<li>
+<p>
+Builtin debugger: breakpoints on node creation/entity creation, graph dumping, visual studio debug extension
+</p>
+</li>
+<li>
+<p>
+Lowering of intrinsics, double word arithmetics, bitfields
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

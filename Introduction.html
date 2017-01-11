@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Introduction</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                        <div class="layout-toc">
+                                                <h2>Contents</h2>
+<ul>
+  <li><a href="#_introduction">Introduction</a></li>
+  <li><a href="#_overview">Overview</a></li>
+  <li><a href="#_the_irg">The IRG</a>
+    <ul>
+      <li><a href="#_basic_irg_elements">Basic IRG Elements</a></li>
+      <li><a href="#_projections">Projections</a></li>
+    </ul>
+  </li>
+</ul>
+
+                                        </div>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Introduction</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph"><p>This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.</p></div>
+</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>lib<span class="algo"><span class="algo">Firm</span></span> is a C library implementing the <span class="algo">Firm</span> low-level intermediate representation.
+<span class="algo">Firm</span> is used to represent a computer program in order to analyse and transform it.
+Its main application is compiler construction where <a class="external text" href="http://pp.ipd.kit.edu">we</a> use it to represent, optimize and transform C and Java programs to native machine code.</p></div>
+<div class="paragraph"><p>The most important features of <span class="algo">Firm</span> are that it is</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+low-level which means that the representation of the program is closer to machine code than to the language.
+</p>
+</li>
+<li>
+<p>
+completely graph based which means that there are no instruction lists or triple code, only data dependence and control flow graphs.
+</p>
+</li>
+<li>
+<p>
+completely <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> based which means that the code of the program is always in SSA form.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>A complete list of <a href="Features">Features</a> is also available.</p></div>
+<div class="paragraph"><p>In the following, we will try to give you an idea about how programs are presented in <span class="algo">Firm</span>.</p></div>
+<div class="paragraph"><p><span class="algo">Firm</span> is using most of the concepts described by Cliff Click. So for a more "scientific" description you might refer to:</p></div>
+<div class="paragraph"><p>Click, C. and Paleczny, M. 1995. A simple graph-based intermediate representation. In Papers From the 1995 ACM SIGPLAN Workshop on intermediate Representations (San Francisco, California, United States, January 22 - 22, 1995). ACM, New York, NY, 35-49. <a class="external text" href="http://dx.doi.org/10.1145/202529.202534">http://dx.doi.org/10.1145/202529.202534</a>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>A program (called <em>irp</em> in FirmSpeek) in lib<span class="algo"><span class="algo">Firm</span></span> consists of three things:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+A type graph
+</p>
+</li>
+<li>
+<p>
+A list of IR graphs (<em>irgs</em>) representing the code of the functions in the program
+</p>
+</li>
+<li>
+<p>
+A symbol table
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Let us review the type and the IR graphs more closely.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_irg">The IRG</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Basically, the irg represents a piece of code. In <span class="algo">Firm</span>, this piece of code is called a <em>method</em>.
+An IRG is a directed graph consisting of IR nodes (_irn_s) and edges between them.
+The irns basically represent the flow of control and data in the code to represent.
+Hence, there are nodes which describe</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+basic blocks
+</p>
+</li>
+<li>
+<p>
+control transfer instruction like jumps
+</p>
+</li>
+<li>
+<p>
+data flow operations such as loads, stores, additions, etc.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>lib<span class="algo"><span class="algo">Firm</span></span> has several routines to dump irgs to text files in the VCG format.
+The <a href="yComp">yComp</a> Tool is very well suited to visualize these graphs.
+In the following, we will use these visualizations to present the fundamental concepts of the irgs.</p></div>
+<div class="sect2">
+<h3 id="_basic_irg_elements">Basic IRG Elements</h3>
+<div class="paragraph"><p>The first irg we will consider is almost minimal. It was constructed by the C frontend of our compiler and represents the code of following C function</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">empty</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/IRG_Empty.png" alt="images/IRG_Empty.png" />
+</div>
+<div class="title">Figure 1. A minimal irg</div>
+</div>
+<div class="paragraph"><p>You will notice that there are several nodes in different colors with names and numbers.
+Furthermore, the edges have different colors, line styles and numbers attached.
+Let us go through all these elements step by step and meet first peculiarities of <span class="algo">Firm</span>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Each irn possesses two numbers separated by a colon.
+  The first number is unique in the whole program (irp) the second one is unique in the irg.
+  Being unique in the program eases debugging, since each node can be uniquely identified.
+  Having a number per irg is useful for bitsets, or maps using that number to index elements.
+  Therefore the first number is called the <strong>node number</strong> and the second one the <strong>node index</strong>.
+</p>
+</li>
+<li>
+<p>
+The two blue nodes <a href="Nodes_Latest#Start"><code>Start</code></a> and <a href="Nodes_Latest#End"><code>End</code></a> present the source and sink for all data and control flow.
+  They are the only nodes which are painted in blue so the <em>begin</em> and the <em>end</em> of the program is easy to spot.
+</p>
+</li>
+<li>
+<p>
+The light yellow nodes with the label <a href="Nodes_Latest#Block"><code>Block</code></a> represent basic blocks in a control flow graph.
+</p>
+</li>
+<li>
+<p>
+Nodes can belong to a basic block.
+  This membership is expressed with the dotted edges.
+  For example, the <a href="Nodes_Latest#End"><code>End</code></a> node belongs to block 1711.
+  The block of the <a href="Nodes_Latest#End"><code>End</code></a> node is called the <strong>end block</strong> and the block of the <a href="Nodes_Latest#Start"><code>Start</code></a> node is called <strong>start block</strong> respectively.
+</p>
+</li>
+<li>
+<p>
+Each block has red edges originating from itself.
+  These edges are control flow edges. Exceptionally, they are drawn in the <em>wrong direction</em>.
+  For example, the <a href="Nodes_Latest#Return"><code>Return</code></a> node transfers the control to block 1711 although the edge is drawn in the other direction.
+  This is due to the internal representation of control flow.
+  Each block has an array of control flow predecessor nodes, i.e. nodes that transfer the control to it.
+  The numbers at the control flow edges give the predecessors of a block some order.
+  This will be important when we will consider Φ-nodes.
+</p>
+</li>
+<li>
+<p>
+One rule in <span class="algo">Firm</span> says that each block has at least one predecessor.
+  However, this is slightly contrary to the concept of a control flow graph which has exactly one node which is the origin of control flow and has thus no such predecessor.
+  To maintain this rule a control flow self loop is attached to the start block.
+  This loop is from node 1354 to 1358 in the example.
+  (NOTE: This is not true in anymore in latest firm versions, we have to update the image and remove this text then)
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_projections">Projections</h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/IRG_Add.png" alt="images/IRG_Add.png" />
+</div>
+<div class="title">Figure 2. A method returning the sum of its two operands</div>
+</div>
+<div class="paragraph"><p>Drawing the block membership explicitly can lead to very non-concise graphs.
+Following the familiar drawings of control flow graphs, we thus draw basic blocks as big containers in which all belonging nodes are placed.
+From now on, we will only draw the graphs this way.</p></div>
+<div class="paragraph"><p>Consider the graph on the right.
+You might have asked yourself what about these <a href="Nodes_Latest#Proj"><code>Proj</code></a> nodes which seem to occur frequently.
+One of the <span class="algo">Firm</span> axioms is that each SSA value corresponds to a node and vice versa.
+For operations which produce multiple results, this seems to pose a problem.
+<span class="algo">Firm</span>&#8217;s solution to this problem is to let that operation return a <em>tuple</em> value out of which the results can be <em>projected</em>.
+This is done with <a href="Nodes_Latest#Proj"><code>Proj</code></a> nodes. Note that Tuples can also be nested.
+In the example graph on the right, the <a href="Nodes_Latest#Start"><code>Start</code></a> node returns a tuple out of which three values are projected.
+Node 1388 projects element 1 from the tuple.
+Node 1386 projects the element <code>t_args</code> from the tuple, which is itself a tuple.
+It contains all arguments passed to the method this IRG represents.
+And finally, node 1382 projects the initial control flow (denoted <code>X_initial_exec</code>).</p></div>
+<div class="paragraph"><p>Using <a href="Nodes_Latest#Proj"><code>Proj</code></a> nodes to handle multiple return values has pros and cons.
+The biggest con is that a Proj does not resemble a real instruction.
+The biggest pro is that, using Projs, each SSA value directly corresponds to a node.
+This makes a lot of things easier when working on the graphs;
+to address a result without Proj nodes, one would have to maintain a pair (node, result number).
+Usage of <a href="Nodes_Latest#Proj"><code>Proj</code></a> nodes is disputable.
+<span class="algo">Firm</span> chose to have them.</p></div>
+<div class="paragraph"><p>As you can see, the method on the right really does something, in contrast to the last example.
+Node 1397 adds the both operands given to the method.
+Its result is returned by the <a href="Nodes_Latest#Return"><code>Return</code></a> node 1399.</p></div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

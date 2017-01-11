@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Testing</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Testing</h1>
+<div class="sect1">
+<h2 id="_testsuite">Testsuite</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We have a repository with lots of small test programs along with a testing driver script in:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>$ git clone https://github.com/libfirm/firm-testsuite.git
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a class="external text" href="https://github.com/libfirm/firm-testsuite/">https://github.com/libfirm/firm-testsuite/</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_buildbot">Buildbot</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>We also started using buildbot for automatically running tests on pushs.
+You can find it here:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a class="external text" href="https://buildbot.info.uni-karlsruhe.de/">https://buildbot.info.uni-karlsruhe.de/</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If you have access to the firm account then you can edit the config like this:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>$ ssh firm@i44sun3
+$ <span class="nb">cd</span> buildbot_config
+<span class="o">(</span>edit master.cfg<span class="o">)</span>
+$ git commit -m <span class="s2">&quot;did some changes on the master config&quot;</span> master.cfg
+$ ./install_master_config.sh
+</pre></div></div></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

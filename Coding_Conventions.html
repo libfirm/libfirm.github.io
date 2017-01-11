@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Coding Conventions</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Coding Conventions</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>This document summarizes lib<span class="algo"><span class="algo">Firm</span></span> coding style conventions.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_indentation_and_formatting">Indentation and formatting</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content"><div class="highlight"><pre><span class="n">ir_node</span> <span class="o">*</span><span class="nf">maybe_create</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ir_node</span> <span class="o">*</span><span class="n">z</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">create_node</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">do_something</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+function and variable names are all in lowercase; words are separated with an underscore <em>_</em>
+</p>
+</li>
+<li>
+<p>
+the star from pointer declarations is put next to the name to be declared (Wrong: ir_node* foo;  Right: ir_node *foo;)
+</p>
+</li>
+<li>
+<p>
+opening curly braces for functions start on a new line
+</p>
+</li>
+<li>
+<p>
+opening curly braces for if, while, etc. start on the same line!
+</p>
+</li>
+<li>
+<p>
+in a call there is no space between the function name and the braces for the arguments
+</p>
+</li>
+<li>
+<p>
+there is a space between builtin keywords (if, while, switch, for) and the following opening braces.
+</p>
+</li>
+<li>
+<p>
+return is not a function call. So no braces around the return value
+</p>
+</li>
+<li>
+<p>
+Try to keep lines shorter than 80 characters (breaking this rule is tolerated)
+</p>
+</li>
+<li>
+<p>
+Don&#8217;t break message strings between 2 lines. (so you can grep for messages in the source)
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_indentation">Indentation</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Indentation at the beginning of the line is done with tabs.
+</p>
+</li>
+<li>
+<p>
+Indentation to match certain points in the previous line is done with spaces (see next part)
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="title">Indentation Example (using &lt;T&gt; to show tabs)</div>
+<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="n">bla</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="o">&amp;&amp;</span> <span class="n">foobar_bar</span><span class="p">(</span><span class="n">long_variable_name</span><span class="p">)</span> <span class="o">||</span> <span class="n">another_long_thingy</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>    <span class="o">&amp;&amp;</span> <span class="n">this_was_a_long_condition</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="n">print</span><span class="p">();</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="n">foobar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">more_long_stuff_here</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span>       <span class="n">and_this_is</span> <span class="o">+</span> <span class="n">another</span> <span class="o">*</span> <span class="p">(</span><span class="n">longish</span> <span class="o">-</span> <span class="n">argument</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>This style allows different people to set tab to different sizes and still get nice layout. Most firm developers tend to set tab to 4 spaces though.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Case labels should not get extra indentation. Correct example:
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="k">switch</span> <span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nl">BLA_ENUM_VAL</span><span class="p">:</span>
+    <span class="n">FooBar</span><span class="p">();</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation">Documentation</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+All functions in the public API (= stuff in the headers in libfirm/include) must have at least a short doxygen documentation
+</p>
+</li>
+<li>
+<p>
+Documentation for functions should be put in the header (except of course static functions which are only in the C file)
+</p>
+</li>
+<li>
+<p>
+Each file must have an @brief doxygen comment describing the intention/purpose of the file (except public headers with a detailed description in a @defgroup)
+</p>
+</li>
+<li>
+<p>
+Each file must have an @author doxygen comment so that we can easily see who has written what code.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_c99">C99</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>While alot of firm code has been written for C89, we do use C99 now. Use it:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Use the bool type from stdbool.h .
+</p>
+</li>
+<li>
+<p>
+Move declarations as close as possible to their first assignment.
+</p>
+</li>
+<li>
+<p>
+But as we don&#8217;t want to force our users to use C99 we keep the public API free of C99. So no bool type in the public headers.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="title">Bad</div>
+<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">bad_example</span><span class="p">(</span><span class="n">ir_node</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">swap_directions</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">arity</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">ir_node</span> <span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+
+        <span class="n">arity</span> <span class="o">=</span> <span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arity</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+                <span class="n">right</span> <span class="o">=</span> <span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">ir_node</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+                        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+                        <span class="n">right</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="title">Good</div>
+<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">good_example</span><span class="p">(</span><span class="n">ir_node</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">swap_directions</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arity</span> <span class="o">=</span> <span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arity</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ir_node</span> <span class="o">*</span><span class="n">n</span>     <span class="o">=</span> <span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+                <span class="n">ir_node</span> <span class="o">*</span><span class="n">left</span>  <span class="o">=</span> <span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+                <span class="n">ir_node</span> <span class="o">*</span><span class="n">right</span> <span class="o">=</span> <span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">ir_node</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+                        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+                        <span class="n">right</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="cm">/* even better in this case: foreach_irn_in(arg0, i, n) { ... } */</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tips_amp_tricks">Tips &amp; Tricks</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="Subclassing">Subclassing</a>
+</p>
+</li>
+<li>
+<p>
+Allocate memory with the macros from <a class="external text" href="http://pp.ipd.kit.edu/git/libfirm/tree/include/libfirm/adt/xmalloc.h">xmalloc.h</a> to be more robust against type errors.
+</p>
+</li>
+<li>
+<p>
+Use the const modifier freely, even for non-pointers. It makes program understanding easier if you can immediately see that a variable is only assigned once.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools">Tools</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_astyle">AStyle</h3>
+<div class="paragraph"><p>You can use astyle to enforce some of the rules above with the following options (needs astyle 2.00):</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>--indent=tab=4
+--style=stroustrup
+--indent-cases
+--indent-col1-comments
+--pad-header
+--pad-oper
+--keep-one-line-statements
+--align-pointer=name</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_whitespace_check">Whitespace Check</h3>
+<div class="paragraph"><p>A simple python script to check at least the tab/whitespace rules:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">file_list</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">num</span>  <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">lastline</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="c1"># Tab characters are only allowed as very first characters on a line!</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;[^</span><span class="se">\t</span><span class="s2">]</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  tabulator not at beginning of line&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot; +$&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  trailing whitespace&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">lastline</span> <span class="o">=</span> <span class="n">line</span>
+    <span class="k">if</span> <span class="n">lastline</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">lastline</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">: No newline at end of file&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_emacs">Emacs</h3>
+<div class="paragraph"><p>The following style spec appears to make Emacs obey the coding conventions:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="p">(</span><span class="nv">c-add-style</span> <span class="s">&quot;firm&quot;</span>
+            <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;stroustrup&quot;</span>
+              <span class="p">(</span><span class="nv">case-label</span> <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">statement-case-intro</span> <span class="o">.</span> <span class="nb">+</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">statement-case-open</span> <span class="o">.</span> <span class="nb">+</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">indent-tabs-mode</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">c-basic-offset</span>   <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">tab-width</span> <span class="o">.</span> <span class="mi">4</span><span class="p">))</span> <span class="no">nil</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

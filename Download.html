@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Download</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Download</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>You want to try out lib<span class="algo"><span class="algo">Firm</span></span>?
+lib<span class="algo"><span class="algo">Firm</span></span> itself is just a library, so you probably want our C frontend <code>cparser</code> as well.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git">Git</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Check it out with git:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>$ git clone --recursive http://pp.ipd.kit.edu/git/cparser.git
+</pre></div></div></div>
+<div class="paragraph"><p>This will download cparser and recursively the <span class="algo">Firm</span> library.</p></div>
+<div class="paragraph"><p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>$ <span class="nb">cd</span> cparser
+$ make
+</pre></div></div></div>
+<div class="paragraph"><p>Now you should have a working binary.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre>$ build/debug/cparser --version
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
+Make it accesible through your PATH environment variable (we tend to create a symlink of <em>build/debug/cparser</em> into <em>$HOME/.local/bin</em> here which is in our PATH).</p></div>
+<div class="paragraph"><p>Try it on some C99 code:</p></div>
+<div class="listingblock">
+<div class="title">Compile a single file test.c</div>
+<div class="content"><div class="highlight"><pre>$ cparser -Wall -O3 test.c
+</pre></div></div></div>
+<div class="listingblock">
+<div class="title">Using cparser in a Makefile based project</div>
+<div class="content"><div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>cparser make
+</pre></div></div></div>
+<div class="paragraph"><p>Note that on 64-bit systems, you have to additionally pass <code>-m32</code> because <code>cparser</code> generates 32-bit code by default.</p></div>
+<div class="paragraph"><p>If you find bugs, please report them in our <a class="external text" href="http://pp.ipd.kit.edu/~firm/bugs/">issue tracker</a>.</p></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

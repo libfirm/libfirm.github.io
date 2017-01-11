@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Unknown Values and Undefined Behaviour</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Unknown Values and Undefined Behaviour</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>In some languages like C it is possible to write programs that access indeterminate/uninitialized values.
+There are two ways to represent such values:
+Using an <a href="Nodes_Latest#Unknown"><code>Unknown</code></a> node which represents a value that the compiler can choose freely, and a <a href="Nodes_Latest#Bad"><code>Bad</code></a> node which results in undefined behaviour if accessed which allows the compiler to perform more aggressive optimizations.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unknown_nodes">Unknown Nodes</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><a href="Nodes_Latest#Unknown"><code>Unknown</code></a> nodes represent a value that is unknown to the programmer and may be freely choosen by the compiler.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+An unknown value can be replaced by a constant at any time.
+</p>
+</li>
+<li>
+<p>
+Common Subexpression Elimination is legal but not recommended as it reduces the freedom to choose different values.
+</p>
+</li>
+<li>
+<p>
+Replacing operations involving Unknown with Unknown is illegal if the relation between the previous Unknown value and the result can be observed (the Unknown has multiple users):
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented as Unknown;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* replacing x+5 with Unknown may fulfill</span>
+<span class="cm">                   impossible relation */</span>
+        <span class="n">panic</span><span class="p">(</span><span class="s">&quot;impossible to get here&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Replacing operations involving Unknown with Unknown is illegal if the possible results of the expression do not include all values:
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="cm">/* Must not be replaced by a new Unknown */</span>
+<span class="n">Unknown</span> <span class="o">|</span> <span class="mi">1</span>   <span class="c1">// but may be replaced with 1 or ~0 if</span>
+              <span class="c1">// Unknown has no other users</span>
+<span class="n">Unknown</span> <span class="o">*</span> <span class="mi">2</span>   <span class="c1">// but may be replaced with any even number</span>
+              <span class="c1">// if Unknown has no other users</span>
+<span class="n">Unknown</span> <span class="o">&amp;</span> <span class="mi">0</span>   <span class="c1">// but may be replaced with 0</span>
+<span class="cm">/* May be replaced by Unknown if sole user of Unknown */</span>
+<span class="n">Unknown</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">Unknown</span> <span class="o">&lt;</span> <span class="mi">42</span>
+<span class="n">Unknown</span> <span class="o">^</span> <span class="mh">0xCAFEBABE</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+An unknown value always results in the same value:
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented as Unknown;</span>
+<span class="n">x</span><span class="o">-</span><span class="n">x</span><span class="p">;</span> <span class="c1">// may be replaced by 0</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bad_nodes">Bad Nodes</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>While Unknown values may be used to conservatively capture the behaviour of indeterminate values, says accessing them produces undefined behaviour which allows more aggressive optimization (or even <a class="external text" href="http://catb.org/jargon/html/N/nasal-demons.html">Nasal Daemons</a>):</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">rand</span><span class="p">())</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">;</span> <span class="c1">// may be replaced by 8</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Such undefined behaviour on access is expressed with <a href="Nodes_Latest#Bad"><code>Bad</code></a> nodes.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Using a Bad node results in undefined behaviour.
+  A firmnod:Phi[] or <a href="Nodes_Latest#Block"><code>Block</code></a> node only uses their operands if actual control flow happens on the respective path.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="cm">/* The following may be replaced by Bad</span>
+<span class="cm">   or a call to abort() */</span>
+<span class="n">Bad</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">Bad</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">Bad</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented by Bad</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">rand</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">x_</span> <span class="o">=</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// may be replaced by y, but not by Bad.</span>
+                <span class="c1">// An abort() call can be placed in the</span>
+                <span class="c1">// else branch of the preceding if</span>
+<span class="k">return</span> <span class="n">x_</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Bad nodes are used to represent unreachable code. Values and Control Flow coming from unreachable code can be replaced by a Bad node.
+</p>
+</li>
+<li>
+<p>
+Currently there are bugs in firm that lead to invalid graphs when Bad is used for undefined behaviour (using it for unreachable code is fine).
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

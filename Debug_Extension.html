@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Debug Extension</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                        <div class="layout-toc">
+                                                <h2>Contents</h2>
+<ul>
+  <li><a href="#_commands">Commands</a></li>
+  <li><a href="#_usage">Usage</a>
+    <ul>
+      <li><a href="#_environment_variable">Environment Variable</a></li>
+      <li><a href="#_inside_a_debugger">Inside a debugger</a></li>
+    </ul>
+  </li>
+  <li><a href="#_debug_functions">Debug Functions</a>
+    <ul>
+      <li><a href="#_usage_in_gdb_macros">Usage in gdb macros</a></li>
+    </ul>
+  </li>
+</ul>
+
+                                        </div>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Debug Extension</h1>
+<div class="sect1">
+<h2 id="_commands">Commands</h2>
+<div class="sectionbody">
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="66%" />
+<thead>
+<tr>
+<th align="left" valign="top">Command</th>
+<th align="left" valign="top"></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td align="left" valign="top"><p class="table"><code>dumpfilter name</code></p></td>
+<td align="left" valign="top"><p class="table">only dump graphs containing the given name</p></td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>init</code></p></td>
+<td align="left" valign="top"><p class="table">break after initialization</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>create nr</code></p></td>
+<td align="left" valign="top"><p class="table">break if node nr was created</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>replace nr</code></p></td>
+<td align="left" valign="top"><p class="table">break if node nr is replaced by another node</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>lower nr</code></p></td>
+<td align="left" valign="top"><p class="table">break before node nr is lowered</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>remirg nr/name</code></p></td>
+<td align="left" valign="top"><p class="table">break if the irg of nr or entity name is deleted</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>newent nr/name</code></p></td>
+<td align="left" valign="top"><p class="table">break if the entity nr or name was created</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>newtype nr/name</code></p></td>
+<td align="left" valign="top"><p class="table">break if the type nr or name was created</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>bp</code></p></td>
+<td align="left" valign="top"><p class="table">show all breakpoints</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>enable nr</code></p></td>
+<td align="left" valign="top"><p class="table">enable breakpoint nr</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>disable nr</code></p></td>
+<td align="left" valign="top"><p class="table">disable breakpoint nr</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>showtype nr/name</code></p></td>
+<td align="left" valign="top"><p class="table">show content of type nr or name</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>showent nr/name</code></p></td>
+<td align="left" valign="top"><p class="table">show content of entity nr or name</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>setmask name msk</code></p></td>
+<td align="left" valign="top"><p class="table">sets the debug module to mask msk</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>setlvl name lvl</code></p></td>
+<td align="left" valign="top"><p class="table">sets the debug module name to level lvl</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>setoutfile name file</code></p></td>
+<td align="left" valign="top"><p class="table">redirects debug output of module name to file</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>irgname name</code></p></td>
+<td align="left" valign="top"><p class="table">prints address and graph number of a method given by its name</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>irgldname name</code></p></td>
+<td align="left" valign="top"><p class="table">prints address and graph number of a method given by its ldname</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>help</code></p></td>
+<td align="left" valign="top"><p class="table">list all commands</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>lib<span class="algo"><span class="algo">Firm</span></span> contains a builtin debug extension helping set breakpoints and inspecting data.</p></div>
+<div class="sect2">
+<h3 id="_environment_variable">Environment Variable</h3>
+<div class="paragraph"><p>When firm starts up the environment variable FIRMDBG is interpreted as debug commands.
+Examples:</p></div>
+<div class="listingblock">
+<div class="title">Break when node number 123 is created</div>
+<div class="content"><div class="highlight"><pre>$ <span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;create 123&quot;</span> my_firm_compiler
+</pre></div></div></div>
+<div class="listingblock">
+<div class="title">Enable full debug logging for the firm.be.prefalloc module</div>
+<div class="content"><div class="highlight"><pre>$ <span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;setmask firm.be.prefalloc -1&quot;</span> my_firm_compiler
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_inside_a_debugger">Inside a debugger</h3>
+<div class="paragraph"><p>The debug extension is accessed using the builtin <code>firm_debug</code> function.</p></div>
+<div class="paragraph"><p>In gdb, issue a call</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>call firm_debug(".help")</code></pre>
+</div></div>
+<div class="paragraph"><p>In the Visual Studio Debugger, simply place a call into the watch window.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debug_functions">Debug Functions</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Further, the following functions/expression might be useful while debugging</p></div>
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="66%" />
+<thead>
+<tr>
+<th align="left" valign="top">Function</th>
+<th align="left" valign="top"></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td align="left" valign="top"><p class="table"><code>dump_ir_block_graph_sched(irg, suffix)</code></p></td>
+<td align="left" valign="top"><p class="table">dumps graph irg</p></td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>current_ir_graph</code></p></td>
+<td align="left" valign="top"><p class="table">the current graph, set by most lib<span class="algo"><span class="algo">Firm</span></span> functions</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>dump_ir_block_graph(irg, suffix)</code></p></td>
+<td align="left" valign="top"><p class="table">dumps graph irg</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_usage_in_gdb_macros">Usage in gdb macros</h3>
+<div class="paragraph"><p>You can predefine gdb macros for common constructs like displaying an <code>ir_node*</code> or dumping the current graph for opening it in ycomp.
+The following is a good idea:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="nb">set</span> unwindonsignal on
+
+<span class="c1"># FIRM</span>
+
+<span class="c1"># The following is able to print most important firm datastructures:</span>
+<span class="c1"># ir_node*, tarval*, ir_type*, ir_mode* and maybe others should work</span>
+define irn
+print gdb_node_helper<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+end
+
+<span class="c1"># Hack to display the length of a firm ARR_F or ARR_D</span>
+define arrlen
+p array_len<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+end
+
+define dumpg
+<span class="k">if</span> <span class="nv">$a</span>rgc <span class="o">==</span> 1
+        <span class="k">if</span> is_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+                call dump_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+        <span class="k">else</span>
+        <span class="k">if</span> is_ir_node<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+                call dump_ir_graph<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+        <span class="k">else</span>
+                <span class="nb">printf</span> <span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
+        end
+        end
+<span class="k">else</span>
+        call dump_ir_graph<span class="o">(</span>current_ir_graph, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+end
+end
+
+define firmd
+call firm_debug<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+end
+
+define graph
+<span class="k">if</span> <span class="nv">$a</span>rgc <span class="o">==</span> 1
+        <span class="k">if</span> is_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+                print gdb_node_helper<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+        <span class="k">else</span>
+        <span class="k">if</span> is_ir_node<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+                print gdb_node_helper<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">))</span>
+        <span class="k">else</span>
+                <span class="nb">printf</span> <span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
+        end
+        end
+<span class="k">else</span>
+        call dump_ir_graph<span class="o">(</span>current_ir_graph, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+end
+end
+
+define keep
+call add_End_keepalive<span class="o">(</span>get_irg_end<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">))</span>, <span class="nv">$a</span>rg0<span class="o">)</span>
+end
+
+<span class="c1"># cparser</span>
+define cpexpr
+call print_expression<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
+end
+
+define cpstmt
+call print_statement<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+end
+
+define cptype
+call print_type<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
+end
+</pre></div></div></div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

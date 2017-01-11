@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Subclassing</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Subclassing</h1>
+<div class="sect1">
+<h2 id="_subclassing">Subclassing</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>You can do object-oriented programming easily in C.
+In practice switches are often easier to handle than complicated visitor patterns&#8230;</p></div>
+<div class="sect2">
+<h3 id="_modeling_the_datastructures">Modeling the Datastructures</h3>
+<div class="paragraph"><p>The following pattern allows to factor out common fields of a set of structures, to handle some functionality with common code.
+This is especially usefull when building graph/tree like structures.</p></div>
+<div class="paragraph"><p>Example of an simple expression tree:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+        <span class="n">EXPR_ADD</span><span class="p">,</span>
+        <span class="n">EXPR_NEG</span>
+<span class="p">}</span> <span class="n">expression_kind_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">union</span> <span class="n">expression_t</span> <span class="n">expression_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="n">expression_kind_t</span>  <span class="n">kind</span><span class="p">;</span>
+        <span class="n">type_t</span>            <span class="o">*</span><span class="n">type</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">expression_base_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="n">expression_base_t</span>  <span class="n">base</span><span class="p">;</span>
+        <span class="n">expression_t</span>      <span class="o">*</span><span class="n">left</span><span class="p">;</span>
+        <span class="n">expression_t</span>      <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">add_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="n">expression_base_t</span>  <span class="n">base</span><span class="p">;</span>
+        <span class="n">expression_t</span>      <span class="o">*</span><span class="n">op</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">negate_t</span><span class="p">;</span>
+
+<span class="k">union</span> <span class="n">expression_t</span> <span class="p">{</span>
+        <span class="n">expression_kind_t</span> <span class="n">kind</span><span class="p">;</span>
+        <span class="n">expression_base_t</span> <span class="n">base</span><span class="p">;</span>
+        <span class="n">add_t</span>             <span class="n">add</span><span class="p">;</span>
+        <span class="n">neg_t</span>             <span class="n">neg</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>This models <code>add_t</code> and <code>negate_t</code> as subclasses of <code>expression_base_t</code>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_typical_usage">Typical Usage</h3>
+<div class="paragraph"><p>The typical usage patterns presented here try to be type-safe as far as that is practical with C.
+They also make sure to always switch over the expression_kind enum without a default case so that when you extend the hierarchy with new subclasses you get compiler warnings and panics at runtime if you forgot to handle the new classes in some functions.</p></div>
+<div class="listingblock">
+<div class="title">Allocation</div>
+<div class="content"><div class="highlight"><pre><span class="kt">size_t</span> <span class="nf">get_size</span><span class="p">(</span><span class="n">expression_kind_t</span> <span class="n">kind</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">kind</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">EXPR_ADD</span><span class="p">:</span> <span class="k">return</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">add_t</span><span class="p">);</span>
+        <span class="k">case</span> <span class="nl">EXPR_NEG</span><span class="p">:</span> <span class="k">return</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">neg_t</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">panic</span><span class="p">(</span><span class="s">&quot;invalid expression kind&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">expression_t</span> <span class="o">*</span><span class="nf">allocate_expression</span><span class="p">(</span><span class="n">expression_kind_t</span> <span class="n">kind</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="n">get_size</span><span class="p">(</span><span class="n">kind</span><span class="p">);</span>
+        <span class="n">expression_t</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">xmalloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+        <span class="n">result</span><span class="o">-&gt;</span><span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="title">Initialisation</div>
+<div class="content"><div class="highlight"><pre><span class="n">expression_t</span> <span class="o">*</span><span class="n">add</span> <span class="o">=</span> <span class="n">allocate_expression</span><span class="p">(</span><span class="n">EXPR_ADD</span><span class="p">);</span>
+<span class="n">add</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left_expr</span><span class="p">;</span>
+<span class="n">add</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right_expr</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="title">Branching based on expression type</div>
+<div class="content"><div class="highlight"><pre><span class="k">static</span> <span class="kt">void</span> <span class="nf">print_add</span><span class="p">(</span><span class="k">const</span> <span class="n">add_t</span> <span class="o">*</span><span class="n">add</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*...*/</span> <span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">print_neg</span><span class="p">(</span><span class="k">const</span> <span class="n">neg_t</span> <span class="o">*</span><span class="n">neg</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="cm">/* ... */</span>
+        <span class="n">print_type</span><span class="p">(</span><span class="n">neg</span><span class="o">-&gt;</span><span class="n">base</span><span class="p">.</span><span class="n">type</span><span class="p">);</span>
+        <span class="cm">/* ... */</span>
+        <span class="n">print_expression</span><span class="p">(</span><span class="n">neg</span><span class="o">-&gt;</span><span class="n">op</span><span class="p">);</span>
+        <span class="cm">/* ... */</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">print_expression</span><span class="p">(</span><span class="k">const</span> <span class="n">expression_t</span> <span class="o">*</span><span class="n">expr</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">expr</span><span class="o">-&gt;</span><span class="n">kind</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">EXPR_ADD</span><span class="p">:</span> <span class="n">print_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">expr</span><span class="o">-&gt;</span><span class="n">add</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nl">EXPR_NEG</span><span class="p">:</span> <span class="n">print_neg</span><span class="p">(</span><span class="o">&amp;</span><span class="n">expr</span><span class="o">-&gt;</span><span class="n">neg</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">panic</span><span class="p">(</span><span class="s">&quot;invalid expression&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

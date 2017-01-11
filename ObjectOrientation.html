@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Object Orientation</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Object Orientation</h1>
+<div class="sect1">
+<h2 id="_basics">Basics</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Many modern languages use object-oriented constructs. These includes:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+compound-datastructures with associated methods (class types)
+</p>
+</li>
+<li>
+<p>
+inheritance hierarchies for class types
+</p>
+</li>
+<li>
+<p>
+dynamic-dispatch when calling methods in an class hierarchy
+</p>
+</li>
+<li>
+<p>
+multiple-inheritance, in the form of interfaces or "true" C++-style multiple inheritance
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The following 2 are also very common in OO-languages though are orthogonal concepts.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+runtime-type information (introspection of object types, which enable dyanmic casting or reflection)
+</p>
+</li>
+<li>
+<p>
+throwing exceptions (these in itself are not an OO-concept) and catching exceptions based on their runtime type
+</p>
+</li>
+<li>
+<p>
+Garbage Collection
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>This article attempts to describe how to model some of these aspects in firm</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implement_them_as_a_library">Implement them as a library</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>lib<span class="algo"><span class="algo">Firm</span></span> at its core is concerned with low-level code. object-orientation is consider as a high-level feature which will be lowered to low-level code. Bases on this definition these features should not be part of libfirms core.
+Instead we attempt to provide them as an add-on library called liboo.</p></div>
+<div class="paragraph"><p>Note though that we should keep libfirms core open for extensions of this kind this means:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Creating new nodes
+</p>
+</li>
+<li>
+<p>
+Registering optimization rules for these new nodes
+</p>
+</li>
+<li>
+<p>
+Support creationg of new types/entities? (not possible currently)
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

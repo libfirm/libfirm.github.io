@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Endless Loops</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Endless Loops</h1>
+<div class="sect1">
+<h2 id="_the_problem">The Problem</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>(Potentially) endless loops are tricky to get right in a graph based representation.
+They pose two main problems:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Endless loops may not have any control flow leading to the End node.
+  Worse in a dependency graph such loops are not connected with the End node and thus invisibile.
+</p>
+</li>
+<li>
+<p>
+Endless loops are observable behaviour.
+  Even if they don&#8217;t contain any memory operations themselves, they must use the memory leading into the loop and produce a new memory value.
+  Failing to do that may lead to memory operations before the loop getting dropped or moved across the loop which is invalid for endless loops.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_keep_alive_edges">Keep-alive-edges</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Our current solution to these problems, is to introduce a special edge class called keep-alive edges.
+Keep-alive edges are inputs of the End node.
+They are unusual in that they don&#8217;t necessarily respect the SSA dominance property (the def may not dominate the use at the End node).</p></div>
+<div class="paragraph"><p>In a correct graph any potentially endless loop needs:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+At least 1 block in the loop must be referenced by a keep-alive-edge
+</p>
+</li>
+<li>
+<p>
+There must be at least 1 Phi node with memory mode which is referenced by a keep-alive-edge
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The keep alive edges lead to the endless loop still being connected with the rest of the graph, the memory Phi node ensures that the loop uses and produces memory.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frontends">Frontends</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Dealing with potentially endless loops unfortunately requires special care by frontends.
+For any loop where termination is not ensured the frontend has to:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Call <code>keep_alive()</code> with 1 block of the loop
+</p>
+</li>
+<li>
+<p>
+Call <code>get_store()</code> at least once to force a PhiM to be created
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_correct_optimization">Correct Optimization</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Optimizations in firm should not be affected much. But they have to ensure that:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+You must not remove memory Phi nodes with at least 1 self reference to ensure that the loops keep using/producing memory.
+</p>
+</li>
+<li>
+<p>
+Phi and Block nodes can have the End node in their users list which may be surprising.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

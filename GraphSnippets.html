@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - <span class="algo">Firm</span> By Example</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1><span class="algo">Firm</span> By Example</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Attention:</strong> The following graph snippets are for the latest revision in
+the git repository. The last stable release may require slightly different
+graphs.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_operations">Basic Operations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_simple_arithmetic_with_constants">Simple Arithmetic with Constants</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="simpleadd.svg" alt="simpleadd.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_load_arithmetic_multiple_users">Load, Arithmetic, Multiple Users</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="load_mul.svg" alt="load_mul.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_calls_sequencing_with_memory_value">Calls, Sequencing with Memory Value</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="n">print_int</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">print_int</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="twocalls.svg" alt="twocalls.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compound_member_access">Compound Member access</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="n">x</span><span class="p">.</span><span class="n">z</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="member.svg" alt="member.svg" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_control_flow">Control Flow</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_jump">Jump</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="k">goto</span> <span class="n">a</span><span class="p">;</span>
+<span class="nl">a</span><span class="p">:</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="jump.svg" alt="jump.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comparison_conditional_jump">Comparison / Conditional Jump</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="condjump.svg" alt="condjump.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conditional_jump_phi">Conditional Jump / Phi</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="mi">7</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="phi.svg" alt="phi.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_simple_loop">Simple Loop</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="loop.svg" alt="loop.svg" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_function_begin_return">Function Begin/Return</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_start_return_end">Start + Return + End</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">empty</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="start_return.svg" alt="start_return.svg" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameters">Parameters</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="imageblock">
+<div class="content">
+<img src="params.svg" alt="params.svg" />
+</div>
+</div>
+</div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>

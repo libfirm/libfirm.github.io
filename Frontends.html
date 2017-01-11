@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+                <title>Firm - Frontends</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <link rel="stylesheet" type="text/css" href="pygments.css"/>
+                <link rel="icon" type="image/png" href="logo-simple.png"/>
+        </head>
+        <body>
+                <div class="layout-header">
+                        <a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
+                </div>
+                <div class="layout-content-wrapper">
+                        <div class="layout-content">
+                                <div class="layout-sidebar">
+                                        <ul>
+                                                <li><a href="Index">About</a></li>
+                                                <li><a href="Features">Features</a></li>
+                                                <li><a href="Download">Download</a></li>
+                                                <li><a href="Documentation">Documentation</a></li>
+                                                <li><a href="Projects">Projects</a></li>
+                                                <li><a href="Development">Development</a></li>
+                                                <li><a href="Contact">Contact</a></li>
+                                        </ul>
+                                        <ul class="external">
+                                                <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+                                        </ul>
+                                </div>
+                                <div class="layout-document">
+                                        <h1>Frontends</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph"><p>This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.</p></div>
+</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frame_type">Frame Type</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Many languages allow allocating data on the stack.
+Stack data is valid until the function finishes.
+Each firm-graph has an associated type called frame-type.
+This is a struct-type which contains entities for data on the stack.</p></div>
+<div class="paragraph"><p>Entities can be added to the frame-type.
+However calculation of the final entity offsets is left to libfirm.
+Hence you should not layout this type or set its size.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_loops">Loops</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>TODO</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_endless_loops">Endless loops</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Endless loops are a tricky case, since they don&#8217;t reach the end-block (or return node) so noone is using the data produced by them.
+However the memory changes and control flow changes still need to be present (it&#8217;s an endless loop and you can actually experience the things that happened before the loop).
+So the correct thing when creating loops or label blocks that could potentially form a loop is using keep_alive on querying the state at least once:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="n">keep_alive</span><span class="p">(</span><span class="n">potential_endless_loop_block</span><span class="p">);</span>
+<span class="n">get_store</span><span class="p">();</span> <span class="cm">/* force construction of memory Phi */</span>
+</pre></div></div></div>
+</div>
+</div>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                </div>
+                <div class="layout-footer">
+                        <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
+                        | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
+                        | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
+                </div>
+        </body>
+</html>
