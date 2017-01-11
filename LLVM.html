@@ -4,7 +4,6 @@
         <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-                <title>Firm - LLVM</title>
                 <link rel="stylesheet" type="text/css" href="style.css"/>
                 <link rel="stylesheet" type="text/css" href="pygments.css"/>
                 <link rel="icon" type="image/png" href="logo-simple.png"/>
@@ -30,7 +29,6 @@
                                         </ul>
                                 </div>
                                 <div class="layout-document">
-                                        <h1>LLVM</h1>
 <div class="sect1">
 <h2 id="_lib_span_class_algo_span_class_algo_firm_span_span_vs_llvm">lib<span class="algo"><span class="algo">Firm</span></span> vs LLVM</h2>
 <div class="sectionbody">
@@ -38,7 +36,7 @@
 Both libraries provide an intermediate representation for compilers which is low level (closer to hardware than to high level source language), and both provide optimizing transformations for their representations and backends for different architectures.
 So both have a very similar mission:
 Optimized compilation/generation of machine code.</p></div>
-<div class="paragraph"><p>Now for the differences and keep in mind that I&#8217;m biased</p></div>
+<div class="paragraph"><p>Now for the differences and keep in mind that we are biased</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -48,31 +46,35 @@ lib<span class="algo"><span class="algo">Firm</span></span> uses a graph based p
 </li>
 <li>
 <p>
-lib<span class="algo"><span class="algo">Firm</span></span> is written in lightweight C while llvm uses more heavyweight C<code>.
-  In practice this means, shorter compile and link times and IMO easier to understand APIs.
+lib<span class="algo"><span class="algo">Firm</span></span> is written in C while LLVM uses C<code>.
+  In practice this means, shorter compile and link times and easier to understand APIs.
   Using C</code> provides us with more flexible abstract datatypes (lists, hashmaps) and more modern language features such as namespaces and operator overloading, but in my experience that isn&#8217;t worth the overhead in compilation times, more complicated error messages and code bloat which slows me down as a programmer.
   Also generating language bindings is alot easier with C interfaces - we were able to create a java binding called jFirm within 2 months.
 </p>
 </li>
 <li>
 <p>
-llvm probably is a little stronger for architecture neutral optimisations and a bit faster (though firm isn&#8217;t slow either).
+LLVM probably is a little stronger for architecture neutral optimisations and a bit faster (though lib<span class="algo"><span class="algo">Firm</span></span> isn&#8217;t slow either).
 </p>
 </li>
 <li>
 <p>
 lib<span class="algo"><span class="algo">Firm</span></span> has very modern/good register allocation infrastructure.
-  In combination with our ia32 backend we often produce better code than llvm and sometimes even gcc.
+  In combination with our IA32 backend we often produce better code than LLVM and sometimes even gcc.
   (This is based on our measurements with Spec CPU2000 and our own set of micro benchmarks, results vary heavily depending on the benchmark of course, so in the end you should do your own benchmarks and not focus on a single task).
 </p>
 </li>
 <li>
 <p>
-lib<span class="algo"><span class="algo">Firm</span></span> has very good ia32 and sparc backends.
-  libFirms arm and amd64 backends are still in very early phases and often fail or don&#8217;t produce good code yet.
+lib<span class="algo"><span class="algo">Firm</span></span> has very good IA32 and SPARC backends.
+  libFirms ARM and AMD64 backends are still in very early phases and often fail or don&#8217;t produce good code yet.
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>Also, both projects have a primary frontend which compiles C code,
+cparser and clang.
+We have to admit that clang can do even more,
+like C++ and Objective-C.</p></div>
 </div>
 </div>
                                 </div>
