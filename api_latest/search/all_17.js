@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['xmalloc',['xmalloc',['../a00123.html#ga42ccfa6fc49cc4ce90cc44cd05052490',1,'xmalloc(size_t size):&#160;xmalloc.h'],['../a00123.html#ga4e8a21f1b2fc046e3791460217dc02ea',1,'XMALLOC():&#160;xmalloc.h']]],
-  ['xmallocf',['XMALLOCF',['../a00123.html#gafee72231d0bbb5e8dfc0b0f700f6df7f',1,'xmalloc.h']]],
-  ['xmallocfz',['XMALLOCFZ',['../a00123.html#ga288dfb516d89b6eb8fe949033117c37b',1,'xmalloc.h']]],
-  ['xmallocn',['XMALLOCN',['../a00123.html#ga58c49c3b37be8caf0fc100fbd477d1ea',1,'xmalloc.h']]],
-  ['xmallocnz',['XMALLOCNZ',['../a00123.html#gacb44f2195e3f651625770e00e1b6ebde',1,'xmalloc.h']]],
-  ['xmallocz',['XMALLOCZ',['../a00123.html#gaf5b20871aff30bca23cbce88a33767db',1,'xmalloc.h']]],
-  ['xrealloc',['XREALLOC',['../a00123.html#ga5e0ac28f50ec30d1ab9042fecb802c76',1,'XREALLOC():&#160;xmalloc.h'],['../a00123.html#ga93a8ec6e8a6eef0f62b7e5b50d0bf9e4',1,'xrealloc(void *ptr, size_t size):&#160;xmalloc.h']]],
-  ['xstrdup',['xstrdup',['../a00123.html#gad6142d091f00b2d4543ce7a43e5d0eba',1,'xmalloc.h']]]
+  ['walk_5fconst_5fcode_0',['walk_const_code',['../a00366.html#gae04f6f4501324455693eca6757082e70',1,'irgwalk.h']]],
+  ['walk_5ftypes_5fentities_1',['walk_types_entities',['../a00401.html#ga352ceff4a4f8c0d3d7a098b59bb7fca9',1,'typerep.h']]],
+  ['with_20data_20objects_2',['COPING WITH DATA OBJECTS',['../a00095.html#autotoc_md9',1,'']]]
 ];

@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -63,12 +63,15 @@ They are unusual in that they don&#8217;t necessarily respect the SSA dominance 
 <div class="ulist"><ul>
 <li>
 <p>
-At least 1 block in the loop must be referenced by a keep-alive-edge
+At least 1 block in the loop must be referenced by a keep-alive-edge,
+  because an endless loop may consists of only a block with a jump in it.
+  There might be no PhiM in it.
 </p>
 </li>
 <li>
 <p>
 There must be at least 1 Phi node with memory mode which is referenced by a keep-alive-edge
+  The Phi might get garbage collection without users, if not kept alive.
 </p>
 </li>
 </ul></div>

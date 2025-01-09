@@ -1,0 +1,12 @@
+digraph "ir/be/riscv"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_a6ab1ad882dac59513ff593cd32f4090 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="be", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_a6ab1ad882dac59513ff593cd32f4090.html",tooltip=""]
+  dir_1875bd0d984675490708f6c090e1636b [label="riscv", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_1875bd0d984675490708f6c090e1636b.html",tooltip=""];
+  }
+}

@@ -1,5 +1,22 @@
 var searchData=
 [
-  ['key',['key',['../a00011.html#aea500f33eddb7dc2edf4f24807fcf7db',1,'pmap_entry']]],
-  ['kind',['kind',['../a00010.html#a6e01e3e74206ad022f1393fc64cf1bb1',1,'loop_element::kind()'],['../a00008.html#a0fe4563381d33c543ac8fa0d8fd997d9',1,'i_call_record::kind()'],['../a00008.html#a4a1526e068d14e450b75db64b03c2e85',1,'i_instr_record::kind()'],['../a00008.html#a63aedbcedfec70e9c087550b3eb592c0',1,'i_record::kind()']]]
+  ['mode_0',['mode',['../a00403.html#ae172a5195bc705cbfd699c80d235d0cc',1,'ir_asm_constraint']]],
+  ['mode_5fany_1',['mode_ANY',['../a00370.html#ga79993868ed3c64c1d5ad3fac0cf78dbf',1,'irmode.h']]],
+  ['mode_5fb_2',['mode_b',['../a00370.html#gaccb1d71fbda643c8d101e30fe03762e7',1,'irmode.h']]],
+  ['mode_5fbad_3',['mode_BAD',['../a00370.html#gaddff6b98e8e1f4c181cbf805582f0eb7',1,'irmode.h']]],
+  ['mode_5fbb_4',['mode_BB',['../a00370.html#ga7b95d9dda1fdf1d46444036bfc4c63c7',1,'irmode.h']]],
+  ['mode_5fbs_5',['mode_Bs',['../a00370.html#gaa29c3274db48bb27e531995791c485e5',1,'irmode.h']]],
+  ['mode_5fbu_6',['mode_Bu',['../a00370.html#ga305b30e54c4afa728d6c2cd8b4f355ba',1,'irmode.h']]],
+  ['mode_5fd_7',['mode_D',['../a00370.html#gae308d498383c74d26e211a82d18c5247',1,'irmode.h']]],
+  ['mode_5ff_8',['mode_F',['../a00370.html#ga6ee9fe90dae401f56d2f17793d7f6712',1,'irmode.h']]],
+  ['mode_5fhs_9',['mode_Hs',['../a00370.html#ga6c26e866160406bc6bbaceb59865ae82',1,'irmode.h']]],
+  ['mode_5fhu_10',['mode_Hu',['../a00370.html#gade2327ba6afba0db212d7d5cf2b297a8',1,'irmode.h']]],
+  ['mode_5fis_11',['mode_Is',['../a00370.html#gad47d8538e3a7e37fa7051b58ad894509',1,'irmode.h']]],
+  ['mode_5fiu_12',['mode_Iu',['../a00370.html#gac7bf5dfbb8a64a5777594f1a080ab2f2',1,'irmode.h']]],
+  ['mode_5fls_13',['mode_Ls',['../a00370.html#ga34da87ac36a13625aa4f495bfaa7a3ea',1,'irmode.h']]],
+  ['mode_5flu_14',['mode_Lu',['../a00370.html#ga8ed6447ffd1da0cf09255f2c5a8569f3',1,'irmode.h']]],
+  ['mode_5fm_15',['mode_M',['../a00370.html#ga0dda2421a9b0bf5230e1aee6b652b0bf',1,'irmode.h']]],
+  ['mode_5fp_16',['mode_P',['../a00370.html#ga33313760fa1bc6020caffa298d33477b',1,'irmode.h']]],
+  ['mode_5ft_17',['mode_T',['../a00370.html#gab019ac60cefdc092e84c773b576bb35d',1,'irmode.h']]],
+  ['mode_5fx_18',['mode_X',['../a00370.html#ga9e6a3b4c452ef847f13a8f4005818e0a',1,'irmode.h']]]
 ];

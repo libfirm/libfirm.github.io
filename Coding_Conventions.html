@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -41,15 +41,15 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">Example</div>
-<div class="content"><div class="highlight"><pre><span class="n">ir_node</span> <span class="o">*</span><span class="nf">maybe_create</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="nf">maybe_create</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">ir_node</span> <span class="o">*</span><span class="n">z</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">create_node</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">do_something</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_node</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">do_something</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="ulist"><ul>
@@ -118,13 +118,13 @@ Indentation to match certain points in the previous line is done with spaces (se
 </ul></div>
 <div class="listingblock">
 <div class="title">Indentation Example (using &lt;T&gt; to show tabs)</div>
-<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="n">bla</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="o">&amp;&amp;</span> <span class="n">foobar_bar</span><span class="p">(</span><span class="n">long_variable_name</span><span class="p">)</span> <span class="o">||</span> <span class="n">another_long_thingy</span>
-<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>    <span class="o">&amp;&amp;</span> <span class="n">this_was_a_long_condition</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bla</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">foobar_bar</span><span class="p">(</span><span class="n">long_variable_name</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">another_long_thingy</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">this_was_a_long_condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="n">print</span><span class="p">();</span>
-<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="n">foobar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">more_long_stuff_here</span><span class="p">,</span>
-<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span>       <span class="n">and_this_is</span> <span class="o">+</span> <span class="n">another</span> <span class="o">*</span> <span class="p">(</span><span class="n">longish</span> <span class="o">-</span> <span class="n">argument</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="n">foobar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">more_long_stuff_here</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w">       </span><span class="n">and_this_is</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">another</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">longish</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">argument</span><span class="p">);</span>
 <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div></div></div>
@@ -137,12 +137,12 @@ Case labels should not get extra indentation. Correct example:
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">switch</span> <span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="p">{</span>
-<span class="k">case</span> <span class="nl">BLA_ENUM_VAL</span><span class="p">:</span>
-    <span class="n">FooBar</span><span class="p">();</span>
-    <span class="k">break</span><span class="p">;</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="k">case</span><span class="w"> </span><span class="no">BLA_ENUM_VAL</span><span class="p">:</span>
+<span class="w">    </span><span class="n">FooBar</span><span class="p">();</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 <span class="k">default</span><span class="o">:</span>
-    <span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div></div></div>
 </div>
@@ -197,42 +197,42 @@ But as we don&#8217;t want to force our users to use C99 we keep the public API 
 </ul></div>
 <div class="listingblock">
 <div class="title">Bad</div>
-<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">bad_example</span><span class="p">(</span><span class="n">ir_node</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">swap_directions</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">bad_example</span><span class="p">(</span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">arg0</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">swap_directions</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">arity</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-        <span class="n">ir_node</span> <span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">arity</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="p">;</span>
 
-        <span class="n">arity</span> <span class="o">=</span> <span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arity</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">n</span> <span class="o">=</span> <span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-                <span class="n">left</span> <span class="o">=</span> <span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-                <span class="n">right</span> <span class="o">=</span> <span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">ir_node</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-                        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
-                        <span class="n">right</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="n">arity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arity</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="listingblock">
 <div class="title">Good</div>
-<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">good_example</span><span class="p">(</span><span class="n">ir_node</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">swap_directions</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">good_example</span><span class="p">(</span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">arg0</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">swap_directions</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arity</span> <span class="o">=</span> <span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arity</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">ir_node</span> <span class="o">*</span><span class="n">n</span>     <span class="o">=</span> <span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-                <span class="n">ir_node</span> <span class="o">*</span><span class="n">left</span>  <span class="o">=</span> <span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-                <span class="n">ir_node</span> <span class="o">*</span><span class="n">right</span> <span class="o">=</span> <span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">ir_node</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-                        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
-                        <span class="n">right</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="cm">/* even better in this case: foreach_irn_in(arg0, i, n) { ... } */</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">arity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_irn_arity</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arity</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">n</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">get_irn_n</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">left</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">get_binop_left</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">                </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_binop_right</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">swap_directions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">ir_node</span><span class="w"> </span><span class="o">*</span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">                        </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">do_something</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="cm">/* even better in this case: foreach_irn_in(arg0, i, n) { ... } */</span>
 <span class="p">}</span>
 </pre></div></div></div>
 </div>
@@ -243,7 +243,7 @@ But as we don&#8217;t want to force our users to use C99 we keep the public API 
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="Subclassing">Subclassing</a>
+<a href="Subclassing.html">Subclassing</a>
 </p>
 </li>
 <li>
@@ -281,40 +281,40 @@ Use the const modifier freely, even for non-pointers. It makes program understan
 <h3 id="_whitespace_check">Whitespace Check</h3>
 <div class="paragraph"><p>A simple python script to check at least the tab/whitespace rules:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 <span class="n">file_list</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
     <span class="n">num</span>  <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">lastline</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="n">lastline</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
         <span class="c1"># Tab characters are only allowed as very first characters on a line!</span>
         <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;[^</span><span class="se">\t</span><span class="s2">]</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-            <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  tabulator not at beginning of line&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  tabulator not at beginning of line&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot; +$&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-            <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  trailing whitespace&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:  trailing whitespace&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
         <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">lastline</span> <span class="o">=</span> <span class="n">line</span>
-    <span class="k">if</span> <span class="n">lastline</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">lastline</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">: No newline at end of file&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lastline</span> <span class="o">!=</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">lastline</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%d</span><span class="s2">: No newline at end of file&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
 </pre></div></div></div>
 </div>
 <div class="sect2">
 <h3 id="_emacs">Emacs</h3>
 <div class="paragraph"><p>The following style spec appears to make Emacs obey the coding conventions:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="p">(</span><span class="nv">c-add-style</span> <span class="s">&quot;firm&quot;</span>
-            <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;stroustrup&quot;</span>
-              <span class="p">(</span><span class="nv">case-label</span> <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">statement-case-intro</span> <span class="o">.</span> <span class="nb">+</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">statement-case-open</span> <span class="o">.</span> <span class="nb">+</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">indent-tabs-mode</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">c-basic-offset</span>   <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">tab-width</span> <span class="o">.</span> <span class="mi">4</span><span class="p">))</span> <span class="no">nil</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">c-add-style</span><span class="w"> </span><span class="s">&quot;firm&quot;</span>
+<span class="w">            </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;stroustrup&quot;</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">case-label</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">statement-case-intro</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nb">+</span><span class="p">)</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">statement-case-open</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nb">+</span><span class="p">)</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">indent-tabs-mode</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="no">t</span><span class="p">)</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">c-basic-offset</span><span class="w">   </span><span class="o">.</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+<span class="w">              </span><span class="p">(</span><span class="nv">tab-width</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span><span class="w"> </span><span class="no">nil</span><span class="p">)</span>
 </pre></div></div></div>
 </div>
 </div>

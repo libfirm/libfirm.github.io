@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -44,7 +44,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_simple_arithmetic_with_constants">Simple Arithmetic with Constants</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span>
 </pre></div></div></div>
 <div class="imageblock">
 <div class="content">
@@ -55,7 +55,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_load_arithmetic_multiple_users">Load, Arithmetic, Multiple Users</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span>
 </pre></div></div></div>
 <div class="imageblock">
 <div class="content">
@@ -66,7 +66,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_calls_sequencing_with_memory_value">Calls, Sequencing with Memory Value</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">print_int</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">print_int</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
 <span class="n">print_int</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
 </pre></div></div></div>
 <div class="imageblock">
@@ -78,7 +78,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_compound_member_access">Compound Member access</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">x</span><span class="p">.</span><span class="n">z</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">.</span><span class="n">z</span>
 </pre></div></div></div>
 <div class="imageblock">
 <div class="content">
@@ -94,7 +94,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_jump">Jump</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">goto</span> <span class="n">a</span><span class="p">;</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">goto</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 <span class="nl">a</span><span class="p">:</span>
 </pre></div></div></div>
 <div class="imageblock">
@@ -106,10 +106,10 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_comparison_conditional_jump">Comparison / Conditional Jump</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="imageblock">
@@ -121,13 +121,13 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_conditional_jump_phi">Conditional Jump / Phi</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="mi">7</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 </pre></div></div></div>
 <div class="imageblock">
 <div class="content">
@@ -138,10 +138,10 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_simple_loop">Simple Loop</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">do</span> <span class="p">{</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">);</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
 </pre></div></div></div>
 <div class="imageblock">
 <div class="content">
@@ -157,7 +157,7 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_start_return_end">Start + Return + End</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">empty</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="p">}</span>
 </pre></div></div></div>
@@ -170,9 +170,9 @@ graphs.</p></div>
 <div class="sect2">
 <h3 id="_parameters">Parameters</h3>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="p">{</span>
-        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="imageblock">

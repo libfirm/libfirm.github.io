@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -70,8 +70,8 @@ Hence you should not layout this type or set its size.</p></div>
 However the memory changes and control flow changes still need to be present (it&#8217;s an endless loop and you can actually experience the things that happened before the loop).
 So the correct thing when creating loops or label blocks that could potentially form a loop is using keep_alive on querying the state at least once:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">keep_alive</span><span class="p">(</span><span class="n">potential_endless_loop_block</span><span class="p">);</span>
-<span class="n">get_store</span><span class="p">();</span> <span class="cm">/* force construction of memory Phi */</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">keep_alive</span><span class="p">(</span><span class="n">potential_endless_loop_block</span><span class="p">);</span>
+<span class="n">get_store</span><span class="p">();</span><span class="w"> </span><span class="cm">/* force construction of memory Phi */</span>
 </pre></div></div></div>
 </div>
 </div>

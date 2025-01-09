@@ -1,15 +1,13 @@
 var annotated_dup =
 [
-    [ "backend_params", "a00007.html#a00227", "a00007_a00227" ],
-    [ "i_call_record", "a00008.html#a00228", "a00008_a00228" ],
-    [ "i_instr_record", "a00008.html#a00229", "a00008_a00229" ],
-    [ "i_record", "a00008.html#a00230", "a00008_a00230" ],
-    [ "ir_asm_constraint", "a00009.html#a00231", "a00009_a00231" ],
-    [ "loop_element", "a00010.html#a00232", "a00010_a00232" ],
-    [ "pmap_entry", "a00011.html#a00233", "a00011_a00233" ],
-    [ "pset_entry", "a00012.html#a00234", "a00012_a00234" ],
-    [ "set_entry", "a00013.html#a00235", "a00013_a00235" ],
-    [ "src_loc_t", "a00014.html#a00236", "a00014_a00236" ],
-    [ "vararg_params", "a00007.html#a00237", "a00007_a00237" ],
-    [ "vrp_attr", "a00015.html#a00238", "a00015_a00238" ]
+    [ "i_call_record", "a00380.html#a00485", "a00380_a00485" ],
+    [ "i_instr_record", "a00380.html#a00489", "a00380_a00489" ],
+    [ "i_record", "a00380.html#a00493", "a00380_a00493" ],
+    [ "ir_asm_constraint", "a00403.html#a00477", "a00403_a00477" ],
+    [ "loop_element", "a00368.html#a00481", "a00368_a00481" ],
+    [ "pmap_entry", "a00339.html#a00461", "a00339_a00461" ],
+    [ "pset_entry", "a00341.html#a00465", "a00341_a00465" ],
+    [ "set_entry", "a00342.html#a00469", "a00342_a00469" ],
+    [ "src_loc_t", "a00348.html#a00473", "a00348_a00473" ],
+    [ "vrp_attr", "a00402.html#a00497", "a00402_a00497" ]
 ];

@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -60,10 +60,10 @@ Replacing operations involving Unknown with Unknown is illegal if the relation b
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented as Unknown;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* replacing x+5 with Unknown may fulfill</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// represented as Unknown;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* replacing x+5 with Unknown may fulfill</span>
 <span class="cm">                   impossible relation */</span>
-        <span class="n">panic</span><span class="p">(</span><span class="s">&quot;impossible to get here&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">panic</span><span class="p">(</span><span class="s">&quot;impossible to get here&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div></div></div>
 <div class="ulist"><ul>
@@ -74,16 +74,16 @@ Replacing operations involving Unknown with Unknown is illegal if the possible r
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="cm">/* Must not be replaced by a new Unknown */</span>
-<span class="n">Unknown</span> <span class="o">|</span> <span class="mi">1</span>   <span class="c1">// but may be replaced with 1 or ~0 if</span>
-              <span class="c1">// Unknown has no other users</span>
-<span class="n">Unknown</span> <span class="o">*</span> <span class="mi">2</span>   <span class="c1">// but may be replaced with any even number</span>
-              <span class="c1">// if Unknown has no other users</span>
-<span class="n">Unknown</span> <span class="o">&amp;</span> <span class="mi">0</span>   <span class="c1">// but may be replaced with 0</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="cm">/* Must not be replaced by a new Unknown */</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">   </span><span class="c1">// but may be replaced with 1 or ~0 if</span>
+<span class="w">              </span><span class="c1">// Unknown has no other users</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w">   </span><span class="c1">// but may be replaced with any even number</span>
+<span class="w">              </span><span class="c1">// if Unknown has no other users</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">0</span><span class="w">   </span><span class="c1">// but may be replaced with 0</span>
 <span class="cm">/* May be replaced by Unknown if sole user of Unknown */</span>
-<span class="n">Unknown</span> <span class="o">+</span> <span class="n">y</span>
-<span class="n">Unknown</span> <span class="o">&lt;</span> <span class="mi">42</span>
-<span class="n">Unknown</span> <span class="o">^</span> <span class="mh">0xCAFEBABE</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">42</span>
+<span class="n">Unknown</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="mh">0xCAFEBABE</span>
 </pre></div></div></div>
 <div class="ulist"><ul>
 <li>
@@ -93,8 +93,8 @@ An unknown value always results in the same value:
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented as Unknown;</span>
-<span class="n">x</span><span class="o">-</span><span class="n">x</span><span class="p">;</span> <span class="c1">// may be replaced by 0</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// represented as Unknown;</span>
+<span class="n">x</span><span class="o">-</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// may be replaced by 0</span>
 </pre></div></div></div>
 </div>
 </div>
@@ -103,10 +103,10 @@ An unknown value always results in the same value:
 <div class="sectionbody">
 <div class="paragraph"><p>While Unknown values may be used to conservatively capture the behaviour of indeterminate values, says accessing them produces undefined behaviour which allows more aggressive optimization (or even <a class="external text" href="http://catb.org/jargon/html/N/nasal-demons.html">Nasal Daemons</a>):</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">rand</span><span class="p">())</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">;</span> <span class="c1">// may be replaced by 8</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">())</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// may be replaced by 8</span>
 </pre></div></div></div>
 <div class="paragraph"><p>Such undefined behaviour on access is expressed with <a href="Nodes_Latest#Bad"><code>Bad</code></a> nodes.</p></div>
 <div class="ulist"><ul>
@@ -118,20 +118,20 @@ Using a Bad node results in undefined behaviour.
 </li>
 </ul></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="cm">/* The following may be replaced by Bad</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="cm">/* The following may be replaced by Bad</span>
 <span class="cm">   or a call to abort() */</span>
-<span class="n">Bad</span> <span class="o">+</span> <span class="mi">5</span>
-<span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">Bad</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">Bad</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="p">}</span>
+<span class="n">Bad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span>
+<span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Bad</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Bad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// represented by Bad</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">rand</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// represented by Bad</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rand</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="n">x_</span> <span class="o">=</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// may be replaced by y, but not by Bad.</span>
-                <span class="c1">// An abort() call can be placed in the</span>
-                <span class="c1">// else branch of the preceding if</span>
-<span class="k">return</span> <span class="n">x_</span><span class="p">;</span>
+<span class="n">x_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// may be replaced by y, but not by Bad.</span>
+<span class="w">                </span><span class="c1">// An abort() call can be placed in the</span>
+<span class="w">                </span><span class="c1">// else branch of the preceding if</span>
+<span class="k">return</span><span class="w"> </span><span class="n">x_</span><span class="p">;</span>
 </pre></div></div></div>
 <div class="ulist"><ul>
 <li>

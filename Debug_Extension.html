@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -159,11 +159,11 @@ cellspacing="0" cellpadding="4">
 Examples:</p></div>
 <div class="listingblock">
 <div class="title">Break when node number 123 is created</div>
-<div class="content"><div class="highlight"><pre>$ <span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;create 123&quot;</span> my_firm_compiler
+<div class="content"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;create 123&quot;</span><span class="w"> </span>my_firm_compiler
 </pre></div></div></div>
 <div class="listingblock">
 <div class="title">Enable full debug logging for the firm.be.prefalloc module</div>
-<div class="content"><div class="highlight"><pre>$ <span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;setmask firm.be.prefalloc -1&quot;</span> my_firm_compiler
+<div class="content"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nv">FIRMDBG</span><span class="o">=</span><span class="s2">&quot;setmask firm.be.prefalloc -1&quot;</span><span class="w"> </span>my_firm_compiler
 </pre></div></div></div>
 </div>
 <div class="sect2">
@@ -218,72 +218,72 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p>You can predefine gdb macros for common constructs like displaying an <code>ir_node*</code> or dumping the current graph for opening it in ycomp.
 The following is a good idea:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="nb">set</span> unwindonsignal on
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span>unwindonsignal<span class="w"> </span>on
 
 <span class="c1"># FIRM</span>
 
 <span class="c1"># The following is able to print most important firm datastructures:</span>
 <span class="c1"># ir_node*, tarval*, ir_type*, ir_mode* and maybe others should work</span>
-define irn
-print gdb_node_helper<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+define<span class="w"> </span>irn
+print<span class="w"> </span>gdb_node_helper<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
 end
 
 <span class="c1"># Hack to display the length of a firm ARR_F or ARR_D</span>
-define arrlen
-p array_len<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+define<span class="w"> </span>arrlen
+p<span class="w"> </span>array_len<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
 end
 
-define dumpg
-<span class="k">if</span> <span class="nv">$a</span>rgc <span class="o">==</span> 1
-        <span class="k">if</span> is_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
-                call dump_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
-        <span class="k">else</span>
-        <span class="k">if</span> is_ir_node<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
-                call dump_ir_graph<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
-        <span class="k">else</span>
-                <span class="nb">printf</span> <span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
-        end
-        end
+define<span class="w"> </span>dumpg
+<span class="k">if</span><span class="w"> </span><span class="nv">$argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>is_ir_graph<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
+<span class="w">                </span>call<span class="w"> </span>dump_ir_graph<span class="o">(</span><span class="nv">$arg0</span>,<span class="w"> </span><span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>is_ir_node<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
+<span class="w">                </span>call<span class="w"> </span>dump_ir_graph<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>,<span class="w"> </span><span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">                </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
+<span class="w">        </span>end
+<span class="w">        </span>end
 <span class="k">else</span>
-        call dump_ir_graph<span class="o">(</span>current_ir_graph, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+<span class="w">        </span>call<span class="w"> </span>dump_ir_graph<span class="o">(</span>current_ir_graph,<span class="w"> </span><span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
 end
 end
 
-define firmd
-call firm_debug<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+define<span class="w"> </span>firmd
+call<span class="w"> </span>firm_debug<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
 end
 
-define graph
-<span class="k">if</span> <span class="nv">$a</span>rgc <span class="o">==</span> 1
-        <span class="k">if</span> is_ir_graph<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
-                print gdb_node_helper<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
-        <span class="k">else</span>
-        <span class="k">if</span> is_ir_node<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
-                print gdb_node_helper<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">))</span>
-        <span class="k">else</span>
-                <span class="nb">printf</span> <span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
-        end
-        end
+define<span class="w"> </span>graph
+<span class="k">if</span><span class="w"> </span><span class="nv">$argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>is_ir_graph<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
+<span class="w">                </span>print<span class="w"> </span>gdb_node_helper<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>is_ir_node<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
+<span class="w">                </span>print<span class="w"> </span>gdb_node_helper<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$arg0</span><span class="o">))</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">                </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Cannot determine graph of given argument\n&quot;</span>
+<span class="w">        </span>end
+<span class="w">        </span>end
 <span class="k">else</span>
-        call dump_ir_graph<span class="o">(</span>current_ir_graph, <span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
+<span class="w">        </span>call<span class="w"> </span>dump_ir_graph<span class="o">(</span>current_ir_graph,<span class="w"> </span><span class="s2">&quot;XXX&quot;</span><span class="o">)</span>
 end
 end
 
-define keep
-call add_End_keepalive<span class="o">(</span>get_irg_end<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">))</span>, <span class="nv">$a</span>rg0<span class="o">)</span>
+define<span class="w"> </span>keep
+call<span class="w"> </span>add_End_keepalive<span class="o">(</span>get_irg_end<span class="o">(</span>get_irn_irg<span class="o">(</span><span class="nv">$arg0</span><span class="o">))</span>,<span class="w"> </span><span class="nv">$arg0</span><span class="o">)</span>
 end
 
 <span class="c1"># cparser</span>
-define cpexpr
-call print_expression<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
+define<span class="w"> </span>cpexpr
+call<span class="w"> </span>print_expression<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
 end
 
-define cpstmt
-call print_statement<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>
+define<span class="w"> </span>cpstmt
+call<span class="w"> </span>print_statement<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>
 end
 
-define cptype
-call print_type<span class="o">(</span><span class="nv">$a</span>rg0<span class="o">)</span>, <span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
+define<span class="w"> </span>cptype
+call<span class="w"> </span>print_type<span class="o">(</span><span class="nv">$arg0</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span>void<span class="o">)</span>putchar<span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">)</span>
 end
 </pre></div></div></div>
 </div>

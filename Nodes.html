@@ -18,12 +18,12 @@
                                 <div class="layout-sidebar">
                                         <ul>
                                                 <li><a href="index.html">About</a></li>
-                                                <li><a href="Features">Features</a></li>
-                                                <li><a href="Download">Download</a></li>
-                                                <li><a href="Documentation">Documentation</a></li>
-                                                <li><a href="Projects">Projects</a></li>
-                                                <li><a href="Development">Development</a></li>
-                                                <li><a href="Contact">Contact</a></li>
+                                                <li><a href="Features.html">Features</a></li>
+                                                <li><a href="Download.html">Download</a></li>
+                                                <li><a href="Documentation.html">Documentation</a></li>
+                                                <li><a href="Projects.html">Projects</a></li>
+                                                <li><a href="Development.html">Development</a></li>
+                                                <li><a href="Contact.html">Contact</a></li>
                                         </ul>
                                         <ul class="external">
                                                 <li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
@@ -97,31 +97,25 @@
 <div class="sectionbody">
 <div class="paragraph"><p>executes assembler fragments of the target machine.</p></div>
 <div class="paragraph"><p>The node contains a template for an assembler snippet. The compiler will
-replace occurences of %0 to %9 with input/output registers,
-%% with a single % char. Some backends allow additional specifiers (for
-example %w3, %l3, %h3 on x86 to get a 16bit, 8hit low, 8bit high part
-of a register).
+replace occurrences of %0, %1, &#8230; with input/output operands, %% with a
+single % char. Some backends allow additional specifiers (for example %w3,
+%b3, %h3 on x86 to get a 16bit, 8hit low, 8bit high part of a register).
 After the replacements the text is emitted into the final assembly.</p></div>
 <div class="paragraph"><p>The clobber list contains names of registers which have an undefined value
 after the assembler instruction is executed; it may also contain <em>memory</em>
 or <em>cc</em> if global state/memory changes or the condition code registers
-(some backends implicitely set cc, memory clobbers on all ASM statements).</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-Example (an i386 instruction)
-</dt>
-<dd>
-<p>
-    ASM(text="btsl %1, %0",
-        input_constraints = ["=m", "r"],
-        clobbers = ["cc"])
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>As there are no output, the %0 references the first input which is just an
-address which the asm operation writes to. %1 references to an input which
-is passed as a register. The condition code register has an unknown value
-after the instruction.</p></div>
+(some backends implicitly set cc on all ASM statements).</p></div>
+<div class="paragraph"><p>Example (an i386 instruction):</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>ASM(text="btsl %1, %0",
+    constraints = ["+m", "r"],
+    clobbers = ["cc"])</code></pre>
+</div></div>
+<div class="paragraph"><p>%0 references a memory reference which the operation both reads and writes.
+For this the node has an address input operand.  %1 references an input
+which is passed as a register. The condition code register has an unknown
+value after the instruction.</p></div>
 <div class="paragraph"><p>(This format is inspired by the gcc extended asm syntax)</p></div>
 <div class="ulist"><div class="title">Inputs</div><ul>
 <li>
@@ -135,25 +129,27 @@ after the instruction.</p></div>
 </p>
 </li>
 </ul></div>
+<div class="ulist"><div class="title">Output Tuple</div><ul>
+<li>
+<p>
+<code>M</code> memory result
+</p>
+</li>
+<li>
+<p>
+<code>X_regular</code> control flow when no jump occurs
+</p>
+</li>
+<li>
+<p>
+<code>first_out</code> first output
+</p>
+</li>
+</ul></div>
 <div class="ulist"><div class="title">Attributes</div><ul>
 <li>
 <p>
-<code>ir_asm_constraint* input_constraints</code> input constraints
-</p>
-</li>
-<li>
-<p>
-<code>size_t n_output_constraints</code> number of output constraints
-</p>
-</li>
-<li>
-<p>
-<code>ir_asm_constraint* output_constraints</code> output constraints
-</p>
-</li>
-<li>
-<p>
-<code>size_t n_clobbers</code> number of clobbered registers/memory
+<code>ir_asm_constraint* constraints</code> constraints
 </p>
 </li>
 <li>
@@ -168,8 +164,8 @@ after the instruction.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa75f82ca20fc6b0da76b3fa616c86011c">keep</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00009.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa75f82ca20fc6b0da76b3fa616c86011c">keep</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00403.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -189,8 +185,8 @@ after the instruction.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00173.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00404.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -207,8 +203,8 @@ method)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00174.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00405.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -224,8 +220,8 @@ method)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00175.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00406.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -264,8 +260,8 @@ method)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00176.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00407.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -320,8 +316,8 @@ are found by looking at the respective Anchor operand.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00177.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00408.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -341,8 +337,8 @@ are found by looking at the respective Anchor operand.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00178.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00409.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -352,7 +348,7 @@ are found by looking at the respective Anchor operand.</p></div>
 computed.</p></div>
 <div class="paragraph"><p>The typical use case for the Bad node is removing unreachable code.
 Frontends should set the current_block to Bad when it is clear that
-following code must be unreachable (ie. after a goto or return statement).
+following code must be unreachable (i.e. after a goto or return statement).
 Optimizations also set block predecessors to Bad when it becomes clear,
 that a control flow edge can never be executed.</p></div>
 <div class="paragraph"><p>The gigo optimizations ensures that nodes with Bad as their block, get
@@ -367,8 +363,8 @@ replaced by Bad right away.</p></div>
 from undefined behaviour like reading uninitialized local variables in C.</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00179.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00410.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -385,7 +381,7 @@ number of bits by reinterpreting the bits in the new mode</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00180.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00411.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -408,7 +404,7 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00181.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00412.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -447,14 +443,14 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00182.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00413.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_call">Call</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Calls other code. Control flow is transfered to ptr, additional
+<div class="paragraph"><p>Calls other code. Control flow is transferred to ptr, additional
 operands are passed to the called code. Called code usually performs a
 return operation. The operands of this return operation are the result
 of the Call node.</p></div>
@@ -493,7 +489,7 @@ of the Call node.</p></div>
 </li>
 <li>
 <p>
-<code>X_except</code> control flow when exception occured
+<code>X_except</code> control flow when exception occurred
 </p>
 </li>
 </ul></div>
@@ -505,8 +501,8 @@ of the Call node.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00183.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00414.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -535,7 +531,7 @@ relation (like less or equal) is fulfilled.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00184.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00415.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -569,8 +565,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00185.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00416.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -605,7 +601,7 @@ specifies it.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00186.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00417.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -621,8 +617,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00187.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00418.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -638,7 +634,7 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00188.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00419.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -675,8 +671,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00189.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00420.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -687,7 +683,7 @@ from the graph.</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00190.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00421.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -729,7 +725,7 @@ None</p></div>
 </li>
 <li>
 <p>
-<code>X_except</code> control flow when exception occured
+<code>X_except</code> control flow when exception occurred
 </p>
 </li>
 </ul></div>
@@ -741,13 +737,13 @@ None</p></div>
 </li>
 <li>
 <p>
-<code>int no_remainder</code>
+<code>int no_remainder</code> Set when division remainder is known to be zero
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00191.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00422.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -758,8 +754,8 @@ you have cases where not all predecessors of a phi-node are known. Dummy
 nodes are used for the unknown predecessors and replaced later.</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00192.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00423.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -775,8 +771,8 @@ keepalive edges)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00193.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00424.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -797,8 +793,8 @@ keepalive edges)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00194.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00425.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -818,8 +814,8 @@ keepalive edges)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00195.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00426.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -836,8 +832,8 @@ by the tuple results</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa75f82ca20fc6b0da76b3fa616c86011c">keep</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaaa67aa343a2051df626a9fe1ff3b996bd">unknown_jump</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00196.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa75f82ca20fc6b0da76b3fa616c86011c">keep</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaaa67aa343a2051df626a9fe1ff3b996bd">unknown_jump</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00427.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -855,7 +851,7 @@ nodes since the getters/setters for node inputs skip them automatically.</p></di
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00197.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00428.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -864,8 +860,8 @@ None</p></div>
 <div class="paragraph"><p>Jumps to the block connected through the out-value</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00198.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00429.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -929,8 +925,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00199.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00430.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -955,7 +951,7 @@ of an instance of the compound type.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00200.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00431.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -971,7 +967,7 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00201.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00432.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1036,7 +1032,7 @@ mod(-5,-3) produces -2
 </li>
 <li>
 <p>
-<code>X_except</code> control flow when exception occured
+<code>X_except</code> control flow when exception occurred
 </p>
 </li>
 </ul></div>
@@ -1048,8 +1044,8 @@ mod(-5,-3) produces -2
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00202.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa8b8a6d3d58cc2f31764d6e01ef32de77">const_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00433.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1069,8 +1065,8 @@ mod(-5,-3) produces -2
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00203.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00434.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1091,8 +1087,8 @@ would not fit into the result mode of a normal Mul anymore)</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00204.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00435.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1119,7 +1115,7 @@ operand</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00205.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00436.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1128,8 +1124,8 @@ None</p></div>
 <div class="paragraph"><p>Placeholder node for cases where you don&#8217;t need any memory input</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00206.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00437.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1145,7 +1141,7 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00207.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00438.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1161,8 +1157,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00208.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00439.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1182,8 +1178,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00209.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad3029f21caf8bd35db73c3b3f2c325f8">commutative</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00440.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1202,13 +1198,13 @@ all phi nodes produce their nth input as result.</p></div>
 <div class="ulist"><div class="title">Attributes</div><ul>
 <li>
 <p>
-<code>int loop</code> wether Phi represents the observable effect of a (possibly) nonterminating loop
+<code>int loop</code> whether Phi represents the observable effect of a (possibly) nonterminating loop
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00210.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00441.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1226,7 +1222,7 @@ this block. Often used to Pin the NoMem node.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00211.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00442.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1249,7 +1245,7 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00212.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00443.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1283,8 +1279,8 @@ Must be lowered to a Call to a runtime check function.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00213.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00444.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1305,8 +1301,8 @@ operands.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00214.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00445.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1336,7 +1332,7 @@ an index.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00215.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00446.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1361,7 +1357,7 @@ the right input modulo this modulo_shift amount.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00216.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00447.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1386,7 +1382,7 @@ the right input modulo this modulo_shift amount.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00217.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00448.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1412,7 +1408,7 @@ the right input modulo this modulo_shift amount.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00218.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00449.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1428,8 +1424,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00219.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00450.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1455,8 +1451,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00220.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00451.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1493,7 +1489,7 @@ None</p></div>
 </li>
 <li>
 <p>
-<code>X_except</code> control flow when exception occured
+<code>X_except</code> control flow when exception occurred
 </p>
 </li>
 </ul></div>
@@ -1515,8 +1511,8 @@ None</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00221.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaad0f31e05f84694a59f6edeb54ff66ac5">fragile</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa6689e4d457b2ac2b2282a2234809d3b8">uses_memory</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00452.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1537,13 +1533,13 @@ None</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00222.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00453.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_switch">Switch</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Change control flow. The destination is choosen based on an integer
+<div class="paragraph"><p>Change control flow. The destination is chosen based on an integer
 input value which is looked up in a table.</p></div>
 <div class="paragraph"><p>Backends can implement this efficiently using a jump table.</p></div>
 <div class="ulist"><div class="title">Inputs</div><ul>
@@ -1573,8 +1569,8 @@ input value which is looked up in a table.</p></div>
 </li>
 </ul></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00223.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae865efbb61486b27918acf47f43b86f9">cfopcode</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa64eeba01aafd6d64e26b4c7a00805bed">forking</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00454.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1594,7 +1590,7 @@ entrance by unifying the memories with a preceding Sync operation.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00224.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00455.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1616,7 +1612,7 @@ just changing its opcode and giving it a new in array.</p></div>
 </ul></div>
 <div class="paragraph"><p>Flags:
 None</p></div>
-<div class="paragraph"><p><a href="api_latest/a00225.html">API</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00456.html">API</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1629,8 +1625,8 @@ Unknown+x or Unknown&lt;x with a new Unknown node if there are multiple
 users of the original unknown node!</p></div>
 <div class="paragraph"><div class="title">Inputs</div><p>None</p></div>
 <div class="paragraph"><p>Flags:
-<a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00148.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
-<div class="paragraph"><p><a href="api_latest/a00226.html">API</a></p></div>
+<a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaae0ac1e2ed4bb1e3d01194fe0fe84c6ec">start_block</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa35764082095f86084a92a676595adb7d">constlike</a>, <a href="api_latest/a00372.html#gga89287ba55d230a5e028f287663fa3bfaa266c48d7316dab3ac1227a096f494f14">dump_noblock</a></p></div>
+<div class="paragraph"><p><a href="api_latest/a00457.html">API</a></p></div>
 </div>
 </div>
                                 </div>
@@ -1641,7 +1637,7 @@ users of the original unknown node!</p></div>
                         <span><a href="https://lists.ira.uni-karlsruhe.de/mailman/listinfo/firm">Mailing list</a>: <a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></span>
                         | <span>IRC: #firm on <a href="http://webchat.freenode.net/?channels=firm">Freenode</a></span>
                         | <span><a href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></span>
-                        | <span>Generated 2017-01-11 18:20:43</span>
+                        | <span>Generated 2025-01-09 01:09:02</span>
                 </div>
         </body>
 </html>

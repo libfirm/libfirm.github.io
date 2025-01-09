@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['allow_5fifconv',['allow_ifconv',['../a00007.html#ad1749164a8c3d90660f887f28465d031',1,'backend_params']]]
+  ['bits_5fnot_5fset_0',['bits_not_set',['../a00402.html#ad097c6e9b5673ec1e4c02ef86b0d32c6',1,'vrp_attr']]],
+  ['bits_5fset_1',['bits_set',['../a00402.html#ac22c7ded144f5abd86d253d2151eca19',1,'vrp_attr']]]
 ];
