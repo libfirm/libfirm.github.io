@@ -25,8 +25,8 @@
 var NAVTREE =
 [
   [ "libFirm", "index.html", [
-    [ "Obstack Memory Allocation", "a00498.html", null ],
-    [ "Visited Counters", "a00499.html", null ],
+    [ "Obstack Memory Allocation", "a00366.html", null ],
+    [ "Visited Counters", "a00367.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -41,17 +41,17 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"a00333.html",
-"a00346.html#gga4eb55738a7155de90a67743b83f5031eae5d475dbcd4be31afb81459ec9dc4ecf",
-"a00362.html#ga1067cb165245114f3a5137418fb04789",
-"a00370.html#ga6c07bff8de79daaa71acf2c0ee83d370",
-"a00372.html#ggade3b5737e8a4d99f1f8ab86bcc0f9eeba4be388ad9f7a0cf483e97e511c310355",
-"a00382.html#ga5a62b62f4d1c4f07ae04306dac223ed7",
-"a00388.html#ga1b3df3e5441c49b296bed72face11c9c",
-"a00403.html#gaaeecb3bf391e8d1b8c29b49d0bde9efd",
-"a00415.html#ga7d7cbcaf68ebd6f13666d59c58c5f805",
-"a00430.html#gafb0c96a3112a7d7b825db478e1ea046e",
-"a00446.html#ga33d139151e21ad6150cd4c49da485a60"
+"a00201.html",
+"a00214.html#gga4eb55738a7155de90a67743b83f5031eae5d475dbcd4be31afb81459ec9dc4ecf",
+"a00230.html#ga1067cb165245114f3a5137418fb04789",
+"a00238.html#ga6c07bff8de79daaa71acf2c0ee83d370",
+"a00240.html#ggade3b5737e8a4d99f1f8ab86bcc0f9eeba4be388ad9f7a0cf483e97e511c310355",
+"a00250.html#ga5a62b62f4d1c4f07ae04306dac223ed7",
+"a00256.html#ga1b3df3e5441c49b296bed72face11c9c",
+"a00271.html#gaaeecb3bf391e8d1b8c29b49d0bde9efd",
+"a00283.html#ga7d7cbcaf68ebd6f13666d59c58c5f805",
+"a00298.html#gafb0c96a3112a7d7b825db478e1ea046e",
+"a00314.html#ga33d139151e21ad6150cd4c49da485a60"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

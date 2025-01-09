@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['allocation_0',['Obstack Memory Allocation',['../a00498.html',1,'']]]
+  ['allocation_0',['Obstack Memory Allocation',['../a00366.html',1,'']]]
 ];
